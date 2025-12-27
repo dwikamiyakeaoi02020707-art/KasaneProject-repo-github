@@ -82,7 +82,7 @@
             100% { transform: translate(100px, 50px) scale(1.2); }
         }
 
-        /* --- FLOATING NAV CAPSULE (DESKTOP) --- */
+        /* --- FLOATING NAV CAPSULE --- */
         nav {
             position: fixed;
             top: 20px;
@@ -187,7 +187,7 @@
             color: black;
         }
 
-        /* --- MEDIA QUERY: KHUSUS HP --- */
+        /* --- MEDIA QUERY HP --- */
         @media (max-width: 900px) {
             nav {
                 border-radius: 30px;
@@ -635,7 +635,7 @@
             <div id="quiz-container">
                 <p id="question-text" style="font-size: 1.2rem; margin-bottom: 20px;">Loading...</p>
                 <div id="options-container" class="quiz-options"></div>
-                <p id="quiz-feedback" style="margin-top: 20px; font-weight: bold; min-height: 25px; font-style: italic;"></p>
+                <p id="quiz-feedback" style="margin-top: 20px; font-weight: bold; min-height: 25px; font-style: italic; white-space: pre-wrap;"></p>
             </div>
             
             <button id="next-btn" class="ios-btn" style="margin-top:20px; display:none;" onclick="nextQuestion()">Next Question</button>
@@ -673,10 +673,12 @@
             { q: "Apa item favorit Teto?", options: ["Daun Bawang", "Jeruk", "Roti Prancis (Baguette)", "Pisang"], ans: 2 },
             { q: "Siapa Voice Provider Teto?", options: ["Saki Fujita", "Oyamano Mayo", "Asami Shimoda", "Hatsune Miku"], ans: 1 },
             { q: "Kapan tanggal rilis/ulang tahun Teto?", options: ["1 April (April Mop)", "31 Agustus", "10 Oktober", "1 Januari"], ans: 0 },
-            { q: "Teto awalnya dibuat sebagai lelucon untuk menipu fans siapa?", options: ["Kagamine Rin/Len", "Hatsune Miku", "Megurine Luka", "Meiko"], ans: 1 }
+            { q: "Teto awalnya dibuat sebagai lelucon untuk menipu fans siapa?", options: ["Kagamine Rin/Len", "Hatsune Miku", "Megurine Luka", "Meiko"], ans: 1 },
+            // Pertanyaan Baru: Tipe Loid
+            { q: "Kasane Teto itu sebenarnya termasuk jenis Loid apa?", options: ["Vocaloid", "UTAUloid", "Fanloid", "Human"], ans: 1 }
         ];
 
-        // --- ARRAY REAKSI TETO ---
+        // --- REAKSI TETO (GOMBAL & NGAMBEK) ---
         const correctReactions = [
             "Yey bener! Pinter banget sih pacar aku~ 😘❤️",
             "Aaa sayang tau banget tentang aku! Love you! 💕✨",
@@ -730,31 +732,30 @@
             });
         }
 
-        // FUNGSI CEK JAWABAN DENGAN REAKSI TETO
         function checkAnswer(selectedIndex, btnElement) {
             const correctIndex = questions[currentQIndex].ans;
             const feedback = document.getElementById('quiz-feedback');
             
-            // Disable tombol biar ga diklik lagi
+            // Disable tombol agar tidak diklik lagi
             const allBtns = document.querySelectorAll('.quiz-btn');
             allBtns.forEach(b => b.disabled = true);
 
             if (selectedIndex === correctIndex) {
-                // JIKA BENAR
+                // BENAR
                 btnElement.style.background = 'var(--nook-green)';
                 btnElement.style.borderColor = 'var(--nook-green)';
                 
-                // Pilih reaksi acak dari array 'correctReactions'
+                // Pilih reaksi acak BENAR
                 const randomReaction = correctReactions[Math.floor(Math.random() * correctReactions.length)];
                 feedback.innerText = randomReaction;
                 feedback.style.color = "var(--nook-green)";
                 score++;
             } else {
-                // JIKA SALAH
+                // SALAH
                 btnElement.style.background = '#ff4444';
                 btnElement.style.borderColor = '#ff4444';
                 
-                // Pilih reaksi acak dari array 'wrongReactions'
+                // Pilih reaksi acak SALAH
                 const randomReaction = wrongReactions[Math.floor(Math.random() * wrongReactions.length)];
                 feedback.innerText = randomReaction + "\n(Jawabannya: " + questions[currentQIndex].options[correctIndex] + ")";
                 feedback.style.color = "#ff4444";
@@ -798,4 +799,5 @@
 
 </body>
 </html>
+
 
