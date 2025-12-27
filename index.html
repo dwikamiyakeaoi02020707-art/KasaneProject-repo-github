@@ -82,7 +82,7 @@
             100% { transform: translate(100px, 50px) scale(1.2); }
         }
 
-        /* --- FLOATING NAV CAPSULE --- */
+        /* --- FLOATING NAV CAPSULE (DESKTOP) --- */
         nav {
             position: fixed;
             top: 20px;
@@ -90,7 +90,7 @@
             transform: translateX(-50%);
             width: 95%;
             max-width: 900px;
-            height: 70px;
+            height: 70px; /* Tinggi fix untuk desktop */
             
             background: rgba(30, 30, 30, 0.6);
             backdrop-filter: blur(var(--blur-amt));
@@ -104,11 +104,13 @@
             padding: 0 25px;
             z-index: 1000;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
+            z-index: 1002;
         }
 
         .nav-brand span {
@@ -120,8 +122,10 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-menu {
+        /* Container Menu Utama */
+        .nav-menu-container {
             display: flex;
+            align-items: center;
             gap: 5px;
         }
 
@@ -133,6 +137,7 @@
             border-radius: 50px;
             transition: all 0.3s;
             cursor: pointer;
+            white-space: nowrap; /* Mencegah teks turun baris */
         }
 
         .nav-menu a:hover {
@@ -140,13 +145,23 @@
             color: white;
         }
 
-        /* Style tombol prank (Emas) */
+        /* Tombol Hamburger (Default Hidden) */
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            cursor: pointer;
+            z-index: 1002;
+            padding: 5px;
+        }
+
+        /* Tombol Prank */
         .prank-link {
             color: #ffd700 !important;
             font-weight: bold;
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
             50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
@@ -170,6 +185,63 @@
             border-color: var(--nook-green);
             box-shadow: 0 0 20px rgba(139, 197, 63, 0.4);
             color: black;
+        }
+
+        /* --- MEDIA QUERY: KHUSUS HP (Max-Width 768px) --- */
+        @media (max-width: 900px) {
+            nav {
+                border-radius: 30px; /* Radius lebih kotak di HP agar rapi */
+                padding: 15px 25px;
+                height: 70px; /* Default tertutup */
+                overflow: hidden; /* Sembunyikan menu drop-down */
+                align-items: flex-start; /* Align item ke atas */
+                flex-wrap: wrap;
+            }
+
+            /* Jika menu dibuka (Class Active ditambahkan via JS) */
+            nav.active {
+                height: auto; /* Biarkan tinggi menyesuaikan isi */
+                padding-bottom: 25px;
+                background: rgba(10, 10, 10, 0.95); /* Background lebih gelap */
+            }
+
+            .hamburger {
+                display: block; /* Munculkan hamburger di HP */
+                position: absolute;
+                top: 15px;
+                right: 25px;
+            }
+
+            /* Sembunyikan Menu Container secara default di HP */
+            .nav-menu-container {
+                width: 100%;
+                flex-direction: column; /* Susun ke bawah */
+                margin-top: 50px; /* Jarak dari logo */
+                gap: 15px;
+                opacity: 0; /* Efek fade in */
+                pointer-events: none; /* Agar tidak bisa diklik saat hidden */
+                transition: opacity 0.3s ease;
+            }
+
+            /* Saat nav aktif, munculkan menu */
+            nav.active .nav-menu-container {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-menu a, .btn-glass-primary {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                background: rgba(255,255,255,0.05);
+            }
+            
+            .nav-menu {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
         }
 
         /* --- HERO SECTION --- */
@@ -222,7 +294,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
             justify-content: center;
         }
@@ -374,125 +446,38 @@
             position: relative;
         }
 
-        /* --- CREDITS MODAL STYLING --- */
         .credits-content {
             max-width: 650px;
             text-align: left;
             max-height: 85vh;
             overflow-y: auto;
         }
-
+        /* Style scrollbar credits */
         .credits-content::-webkit-scrollbar { width: 8px; }
-        .credits-content::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-        }
+        .credits-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
         .credits-header {
-            text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        .credits-header h2 { font-size: 1.8rem; color: var(--nook-green); margin-bottom: 10px; }
 
-        .credits-header h2 {
-            font-size: 1.8rem;
-            color: var(--nook-green);
-            margin-bottom: 10px;
-        }
-
-        .credits-body h3 {
-            color: var(--text-main);
-            margin-top: 25px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            border-left: 3px solid var(--kasane-red);
-            padding-left: 10px;
-        }
-
-        .credits-body p {
-            font-size: 0.95rem;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .credits-body ul, .credits-body ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .credits-body li {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
+        .credits-body h3 { color: var(--text-main); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem; border-left: 3px solid var(--kasane-red); padding-left: 10px; }
+        .credits-body p, .credits-body li { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 8px; }
+        .credits-body ul, .credits-body ol { margin-left: 20px; margin-bottom: 15px; }
 
         /* --- PRANK MODAL STYLING --- */
-        #prankModal .modal-content {
-            border-color: #ff4444;
-            box-shadow: 0 0 50px rgba(255, 68, 68, 0.4);
-        }
-        
-        .rickroll-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 2px solid #ff4444;
-        }
-        
-        .rickroll-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        #prankModal .modal-content { border-color: #ff4444; box-shadow: 0 0 50px rgba(255, 68, 68, 0.4); }
+        .rickroll-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 20px; border: 2px solid #ff4444; }
+        .rickroll-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #aaa;
-            transition: 0.2s;
-            line-height: 1;
-        }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: #aaa; transition: 0.2s; line-height: 1; }
         .close-btn:hover { color: white; }
 
-        @keyframes popUp {
-            from { opacity: 0; transform: scale(0.8) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
+        .mirror-link { display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 20px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 20px; transition: 0.2s; font-weight: 600; }
+        .mirror-link:hover { background: rgba(255,255,255,0.15); transform: scale(1.02); }
 
-        .mirror-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 15px 0;
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: 0.2s;
-            font-weight: 600;
-        }
-
-        .mirror-link:hover {
-            background: rgba(255,255,255,0.15);
-            transform: scale(1.02);
-        }
-
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            nav { width: 95%; padding: 0 15px; flex-wrap: wrap; height: auto; padding-bottom: 10px; }
-            .nav-menu { flex-wrap: wrap; justify-content: center; width: 100%; margin: 5px 0; }
-            .nav-brand { margin-bottom: 5px; }
         }
 
     </style>
@@ -505,17 +490,22 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <nav>
+    <nav id="navbar">
         <div class="nav-brand">
             <span>NOOKLEAF</span>
         </div>
-        <div class="nav-menu">
-            <a href="#">Home</a>
-            <a href="#projects">OS Mods</a>
-            <a onclick="openCredits()">Credits</a>
-            <a onclick="openPrank()" class="prank-link">Free Lisensi Win 10</a>
+
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <div class="nav-menu-container">
+            <div class="nav-menu">
+                <a href="#" onclick="toggleMenu()">Home</a>
+                <a href="#projects" onclick="toggleMenu()">OS Mods</a>
+                <a onclick="openCredits(); toggleMenu()">Credits</a>
+                <a onclick="openPrank(); toggleMenu()" class="prank-link">Free Lisensi Win 10</a>
+            </div>
+            <a href="https://saweria.co/tetoyapping29312" target="_blank" class="btn-glass-primary">Donate</a>
         </div>
-        <a href="https://saweria.co/tetoyapping29312" target="_blank" class="btn-glass-primary">Donate</a>
     </nav>
 
     <section class="hero">
@@ -589,15 +579,12 @@
     <div id="creditsModal" class="modal">
         <div class="modal-content credits-content">
             <span class="close-btn" onclick="closeCredits()">&times;</span>
-            
             <div class="credits-header">
                 <h2>CREDITS & INFO</h2>
                 <p>Nookleaf and KasaneProject Collaboration</p>
             </div>
-
             <div class="credits-body">
                 <p>Selamat datang di proyek kolaborasi spesial antara Nookleaf dan KasaneProject. Modifikasi Windows ini dirancang untuk memberikan pengalaman desktop yang estetik, personal, dan harmonis melalui perpaduan seni visual dan desain suara yang unik.</p>
-
                 <h3>🛠️ Tim Pengembang</h3>
                 <p>Proyek ini terwujud berkat dedikasi dari para kreator berikut:</p>
                 <ul>
@@ -607,7 +594,6 @@
                     <li><strong>Desainer:</strong> Hirolizia, Holymagi</li>
                     <li><strong>Sound Desainer:</strong> DavidMounder9598</li>
                 </ul>
-
                 <h3>✨ Fitur Utama</h3>
                 <ul>
                     <li><strong>Custom Startup Sound:</strong> Pengalaman audio eksklusif saat pertama kali menyalakan PC.</li>
@@ -615,7 +601,6 @@
                     <li><strong>Themed Icons & Skin:</strong> Perubahan menyeluruh pada ikon sistem agar selaras dengan tema.</li>
                     <li><strong>Lightweight Performance:</strong> Optimasi sistem agar tetap ringan meski menggunakan tema kustom.</li>
                 </ul>
-
                 <h3>📜 Catatan Lisensi</h3>
                 <ol>
                     <li>DILARANG KERAS mengambil, mengunggah ulang, atau mendistribusikan file ISO ini di platform lain tanpa izin tertulis dari pihak Modder (Nookleaf).</li>
@@ -638,7 +623,6 @@
             <span class="close-btn" onclick="closePrank()">&times;</span>
             <h1 style="color: #ff4444; font-size: 2.5rem; text-shadow: 0 0 20px rgba(255,0,0,0.5);">SELAMAT KENA PRANK! 🤣</h1>
             <p style="color: #fff; font-size: 1.2rem; margin-top: 10px;">Mana ada Windows gratis bang... wkwkwk</p>
-            
             <div class="rickroll-container">
                 <iframe id="rickrollVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
@@ -646,40 +630,28 @@
     </div>
 
     <script>
+        const navbar = document.getElementById("navbar");
         const downloadModal = document.getElementById("downloadModal");
         const creditsModal = document.getElementById("creditsModal");
         const prankModal = document.getElementById("prankModal");
         const modalTitle = document.getElementById("modalTitle");
         const rickrollVideo = document.getElementById("rickrollVideo");
 
-        // --- DOWNLOAD ---
-        function openDownloadModal(name) {
-            downloadModal.style.display = "block";
-            modalTitle.innerText = name;
-        }
-        function closeDownloadModal() {
-            downloadModal.style.display = "none";
+        // --- MOBILE MENU TOGGLE ---
+        function toggleMenu() {
+            navbar.classList.toggle("active");
         }
 
-        // --- CREDITS ---
-        function openCredits() {
-            creditsModal.style.display = "block";
-        }
-        function closeCredits() {
-            creditsModal.style.display = "none";
-        }
+        // --- MODAL LOGIC ---
+        function openDownloadModal(name) { downloadModal.style.display = "block"; modalTitle.innerText = name; }
+        function closeDownloadModal() { downloadModal.style.display = "none"; }
 
-        // --- PRANK (RICKROLL) ---
-        function openPrank() {
-            prankModal.style.display = "block";
-            rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0";
-        }
-        function closePrank() {
-            prankModal.style.display = "none";
-            rickrollVideo.src = "";
-        }
+        function openCredits() { creditsModal.style.display = "block"; }
+        function closeCredits() { creditsModal.style.display = "none"; }
 
-        // --- CLOSE ON CLICK OUTSIDE ---
+        function openPrank() { prankModal.style.display = "block"; rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"; }
+        function closePrank() { prankModal.style.display = "none"; rickrollVideo.src = ""; }
+
         window.onclick = function(e) {
             if (e.target == downloadModal) closeDownloadModal();
             if (e.target == creditsModal) closeCredits();
