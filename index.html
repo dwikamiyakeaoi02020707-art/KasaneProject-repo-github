@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NookLeaf & KasaneProject | Glass Edition</title>
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --glass-bg: rgba(20, 20, 20, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.05);
+            --blur-amt: 30px;
+            
+            --nook-green: #8bc53f;
+            --kasane-red: #ff2a6d;
+            --text-main: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- LIQUID BACKGROUND ANIMATION --- */
+        .liquid-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: floatBlob 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: var(--nook-green);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--kasane-red);
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 40%;
+            width: 300px;
+            height: 300px;
+            background: #4a00e0;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        /* --- FLOATING NAV CAPSULE --- */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 900px;
+            height: 70px;
+            
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(var(--blur-amt));
+            -webkit-backdrop-filter: blur(var(--blur-amt));
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-brand span {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, var(--nook-green), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            padding: 10px 15px;
+            border-radius: 50px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* Style tombol prank (Emas) */
+        .prank-link {
+            color: #ffd700 !important;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
+        }
+
+        .btn-glass-primary {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 24px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .btn-glass-primary:hover {
+            background: var(--nook-green);
+            border-color: var(--nook-green);
+            box-shadow: 0 0 20px rgba(139, 197, 63, 0.4);
+            color: black;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.5));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            drop-shadow(0 0 10px rgba(255,255,255,0.2));
+        }
+
+        .hero-glass-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--blur-amt));
+            -webkit-backdrop-filter: blur(var(--blur-amt));
+            border: 1px solid var(--glass-border);
+            padding: 30px 50px;
+            border-radius: 30px;
+            max-width: 700px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-top: 30px;
+        }
+
+        .hero-glass-box p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* --- GRID CARDS --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px 100px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .glass-card {
+            background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .card-glow {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        .glow-green { background: var(--nook-green); }
+        .glow-red { background: var(--kasane-red); }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+        
+        .card-subtitle {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            font-weight: 600;
+        }
+
+        .nook-text { color: var(--nook-green); }
+        .kasane-text { color: var(--kasane-red); }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child { border-bottom: none; }
+
+        .icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .ios-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            text-align: center;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-nook:hover {
+            background: var(--nook-green);
+            color: black;
+            box-shadow: 0 0 30px rgba(139, 197, 63, 0.5);
+        }
+
+        .btn-kasane:hover {
+            background: var(--kasane-red);
+            color: white;
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.5);
+        }
+
+        /* --- MODAL (GENERAL) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        /* --- CREDITS MODAL STYLING --- */
+        .credits-content {
+            max-width: 650px;
+            text-align: left;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .credits-content::-webkit-scrollbar { width: 8px; }
+        .credits-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .credits-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .credits-header h2 {
+            font-size: 1.8rem;
+            color: var(--nook-green);
+            margin-bottom: 10px;
+        }
+
+        .credits-body h3 {
+            color: var(--text-main);
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border-left: 3px solid var(--kasane-red);
+            padding-left: 10px;
+        }
+
+        .credits-body p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .credits-body ul, .credits-body ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .credits-body li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        /* --- PRANK MODAL STYLING --- */
+        #prankModal .modal-content {
+            border-color: #ff4444;
+            box-shadow: 0 0 50px rgba(255, 68, 68, 0.4);
+        }
+        
+        .rickroll-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 2px solid #ff4444;
+        }
+        
+        .rickroll-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #aaa;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .close-btn:hover { color: white; }
+
+        @keyframes popUp {
+            from { opacity: 0; transform: scale(0.8) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .mirror-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .mirror-link:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3rem; }
+            nav { width: 95%; padding: 0 15px; flex-wrap: wrap; height: auto; padding-bottom: 10px; }
+            .nav-menu { flex-wrap: wrap; justify-content: center; width: 100%; margin: 5px 0; }
+            .nav-brand { margin-bottom: 5px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="liquid-wrapper">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-brand">
+            <span>NOOKLEAF</span>
+        </div>
+        <div class="nav-menu">
+            <a href="#">Home</a>
+            <a href="#projects">OS Mods</a>
+            <a onclick="openCredits()">Credits</a>
+            <a onclick="openPrank()" class="prank-link">Free Lisensi Win 10</a>
+        </div>
+        <a href="https://saweria.co/tetoyapping29312" target="_blank" class="btn-glass-primary">Donate</a>
+    </nav>
+
+    <section class="hero">
+        <h1>FUTURE OF <br>WINDOWS</h1>
+        
+        <div class="hero-glass-box">
+            <p>Selamat datang di pengalaman <strong>NookLeaf (Win 11)</strong> dan <strong>KasaneProject (Win 10)</strong>. Desain transparan, performa tanpa batas, dan estetika.</p>
+        </div>
+    </section>
+
+    <div id="projects" class="container">
+        <div class="grid">
+            
+            <div class="glass-card">
+                <div class="card-glow glow-green"></div>
+                <div class="card-content">
+                    <span class="card-subtitle nook-text">Windows 11</span>
+                    <h2 class="card-title">NookLeaf</h2>
+                    <p style="color:#aaa; margin-bottom:20px;">Nature & Aesthetics Edition</p>
+                    
+                    <ul class="feature-list">
+                        <li><span class="icon" style="color:var(--nook-green)">●</span> Based on Win 11 24H2</li>
+                        <li><span class="icon" style="color:var(--nook-green)">●</span> Win 11 Base + Win 8.1 Taskbar UI</li>
+                        <li><span class="icon" style="color:var(--nook-green)">●</span> No TPM / Secure Boot</li>
+                        <li><span class="icon" style="color:var(--nook-green)">●</span> Debloated for Speed</li>
+                    </ul>
+
+                    <button class="ios-btn btn-nook" onclick="openDownloadModal('NookLeaf Windows 11')">Get NookLeaf</button>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-glow glow-red"></div>
+                <div class="card-content">
+                    <span class="card-subtitle kasane-text">Windows 10</span>
+                    <h2 class="card-title">KasaneProject</h2>
+                    <p style="color:#aaa; margin-bottom:20px;">Red Drill Gaming Edition</p>
+                    
+                    <ul class="feature-list">
+                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Based on Win 10 22H2</li>
+                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Ultra Low Latency</li>
+                        <li><span class="icon" style="color:var(--kasane-red)">●</span> ISO Size: 1.5GB | Installed: 3.85GB</li>
+                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Usage RAM: 800MB</li>
+                    </ul>
+
+                    <button class="ios-btn btn-kasane" onclick="openDownloadModal('KasaneProject Windows 10')">Get Kasane</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDownloadModal()">&times;</span>
+            <h2 id="modalTitle">Download</h2>
+            <p style="color:#aaa; margin-bottom:30px;">Select a mirror to start your download.</p>
+            
+            <a href="https://sfl.gl/opDrRHjI" target="_blank" class="mirror-link">
+                <span>MediaFire (Fast)</span>
+                <span>➜</span>
+            </a>
+
+            <a href="https://sfl.gl/LYKCf" target="_blank" class="mirror-link">
+                <span>Google Drive</span>
+                <span>➜</span>
+            </a>
+        </div>
+    </div>
+
+    <div id="creditsModal" class="modal">
+        <div class="modal-content credits-content">
+            <span class="close-btn" onclick="closeCredits()">&times;</span>
+            
+            <div class="credits-header">
+                <h2>CREDITS & INFO</h2>
+                <p>Nookleaf and KasaneProject Collaboration</p>
+            </div>
+
+            <div class="credits-body">
+                <p>Selamat datang di proyek kolaborasi spesial antara Nookleaf dan KasaneProject. Modifikasi Windows ini dirancang untuk memberikan pengalaman desktop yang estetik, personal, dan harmonis melalui perpaduan seni visual dan desain suara yang unik.</p>
+
+                <h3>🛠️ Tim Pengembang</h3>
+                <p>Proyek ini terwujud berkat dedikasi dari para kreator berikut:</p>
+                <ul>
+                    <li><strong>Lead Modder:</strong> Vincent, Hirolizia, Holymagi</li>
+                    <li><strong>Ilustrator:</strong> Dwika Rahma Putri (Logo)</li>
+                    <li><strong>Wallpaper Desainer:</strong> AES™</li>
+                    <li><strong>Desainer:</strong> Hirolizia, Holymagi</li>
+                    <li><strong>Sound Desainer:</strong> DavidMounder9598</li>
+                </ul>
+
+                <h3>✨ Fitur Utama</h3>
+                <ul>
+                    <li><strong>Custom Startup Sound:</strong> Pengalaman audio eksklusif saat pertama kali menyalakan PC.</li>
+                    <li><strong>Original Artwork:</strong> Wallpaper dan aset visual yang tidak akan ditemukan di tempat lain.</li>
+                    <li><strong>Themed Icons & Skin:</strong> Perubahan menyeluruh pada ikon sistem agar selaras dengan tema.</li>
+                    <li><strong>Lightweight Performance:</strong> Optimasi sistem agar tetap ringan meski menggunakan tema kustom.</li>
+                </ul>
+
+                <h3>📜 Catatan Lisensi</h3>
+                <ol>
+                    <li>DILARANG KERAS mengambil, mengunggah ulang, atau mendistribusikan file ISO ini di platform lain tanpa izin tertulis dari pihak Modder (Nookleaf).</li>
+                    <li>Seluruh aset visual (Wallpaper/Ilustrasi) dan audio adalah hak cipta kreator.</li>
+                    <li>Mod ini disediakan untuk penggunaan pribadi, bukan untuk diperjualbelikan dan tidak boleh membagikan ulang file menggunakan shortlink pribadi demi keuntungan (cuan). Seluruh link distribusi harus menggunakan shortlink resmi dari Modder.</li>
+                </ol>
+                <br>
+                <p style="text-align: center; font-weight: bold; color: var(--kasane-red);">
+                    Segala bentuk pelanggaran distribusi tanpa izin akan ditindaklanjuti. Hargailah karya para kreator.
+                </p>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
+                    Copyright (c) 2024 Nookleaf
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="prankModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePrank()">&times;</span>
+            <h1 style="color: #ff4444; font-size: 2.5rem; text-shadow: 0 0 20px rgba(255,0,0,0.5);">SELAMAT KENA PRANK! 🤣</h1>
+            <p style="color: #fff; font-size: 1.2rem; margin-top: 10px;">Mana ada Windows gratis bang... wkwkwk</p>
+            
+            <div class="rickroll-container">
+                <iframe id="rickrollVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const downloadModal = document.getElementById("downloadModal");
+        const creditsModal = document.getElementById("creditsModal");
+        const prankModal = document.getElementById("prankModal");
+        const modalTitle = document.getElementById("modalTitle");
+        const rickrollVideo = document.getElementById("rickrollVideo");
+
+        // --- DOWNLOAD ---
+        function openDownloadModal(name) {
+            downloadModal.style.display = "block";
+            modalTitle.innerText = name;
+        }
+        function closeDownloadModal() {
+            downloadModal.style.display = "none";
+        }
+
+        // --- CREDITS ---
+        function openCredits() {
+            creditsModal.style.display = "block";
+        }
+        function closeCredits() {
+            creditsModal.style.display = "none";
+        }
+
+        // --- PRANK (RICKROLL) ---
+        function openPrank() {
+            prankModal.style.display = "block";
+            rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0";
+        }
+        function closePrank() {
+            prankModal.style.display = "none";
+            rickrollVideo.src = "";
+        }
+
+        // --- CLOSE ON CLICK OUTSIDE ---
+        window.onclick = function(e) {
+            if (e.target == downloadModal) closeDownloadModal();
+            if (e.target == creditsModal) closeCredits();
+            if (e.target == prankModal) closePrank();
+        }
+    </script>
+
+</body>
+</html>
