@@ -90,7 +90,7 @@
             transform: translateX(-50%);
             width: 95%;
             max-width: 900px;
-            height: 70px; /* Tinggi fix untuk desktop */
+            height: 70px;
             
             background: rgba(30, 30, 30, 0.6);
             backdrop-filter: blur(var(--blur-amt));
@@ -137,7 +137,7 @@
             border-radius: 50px;
             transition: all 0.3s;
             cursor: pointer;
-            white-space: nowrap; /* Mencegah teks turun baris */
+            white-space: nowrap;
         }
 
         .nav-menu a:hover {
@@ -145,7 +145,7 @@
             color: white;
         }
 
-        /* Tombol Hamburger (Default Hidden) */
+        /* Hamburger */
         .hamburger {
             display: none;
             font-size: 1.8rem;
@@ -187,43 +187,40 @@
             color: black;
         }
 
-        /* --- MEDIA QUERY: KHUSUS HP (Max-Width 768px) --- */
+        /* --- MEDIA QUERY: KHUSUS HP --- */
         @media (max-width: 900px) {
             nav {
-                border-radius: 30px; /* Radius lebih kotak di HP agar rapi */
+                border-radius: 30px;
                 padding: 15px 25px;
-                height: 70px; /* Default tertutup */
-                overflow: hidden; /* Sembunyikan menu drop-down */
-                align-items: flex-start; /* Align item ke atas */
+                height: 70px;
+                overflow: hidden;
+                align-items: flex-start;
                 flex-wrap: wrap;
             }
 
-            /* Jika menu dibuka (Class Active ditambahkan via JS) */
             nav.active {
-                height: auto; /* Biarkan tinggi menyesuaikan isi */
+                height: auto;
                 padding-bottom: 25px;
-                background: rgba(10, 10, 10, 0.95); /* Background lebih gelap */
+                background: rgba(10, 10, 10, 0.95);
             }
 
             .hamburger {
-                display: block; /* Munculkan hamburger di HP */
+                display: block;
                 position: absolute;
                 top: 15px;
                 right: 25px;
             }
 
-            /* Sembunyikan Menu Container secara default di HP */
             .nav-menu-container {
                 width: 100%;
-                flex-direction: column; /* Susun ke bawah */
-                margin-top: 50px; /* Jarak dari logo */
+                flex-direction: column;
+                margin-top: 50px;
                 gap: 15px;
-                opacity: 0; /* Efek fade in */
-                pointer-events: none; /* Agar tidak bisa diklik saat hidden */
+                opacity: 0;
+                pointer-events: none;
                 transition: opacity 0.3s ease;
             }
 
-            /* Saat nav aktif, munculkan menu */
             nav.active .nav-menu-container {
                 opacity: 1;
                 pointer-events: all;
@@ -452,7 +449,6 @@
             max-height: 85vh;
             overflow-y: auto;
         }
-        /* Style scrollbar credits */
         .credits-content::-webkit-scrollbar { width: 8px; }
         .credits-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
 
@@ -465,10 +461,20 @@
         .credits-body p, .credits-body li { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 8px; }
         .credits-body ul, .credits-body ol { margin-left: 20px; margin-bottom: 15px; }
 
-        /* --- PRANK MODAL STYLING --- */
+        /* --- PRANK & QUIZ MODAL STYLING --- */
         #prankModal .modal-content { border-color: #ff4444; box-shadow: 0 0 50px rgba(255, 68, 68, 0.4); }
         .rickroll-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 20px; border: 2px solid #ff4444; }
         .rickroll-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* Quiz Styles */
+        #gameModal .modal-content { border-color: var(--kasane-red); box-shadow: 0 0 30px rgba(255, 42, 109, 0.3); }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+        .quiz-btn {
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: white; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.3s;
+        }
+        .quiz-btn:hover { background: var(--kasane-red); border-color: var(--kasane-red); }
+        .quiz-score { font-size: 1.5rem; font-weight: bold; color: var(--nook-green); margin-top: 20px; }
 
         .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: #aaa; transition: 0.2s; line-height: 1; }
         .close-btn:hover { color: white; }
@@ -476,7 +482,7 @@
         .mirror-link { display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 20px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 20px; transition: 0.2s; font-weight: 600; }
         .mirror-link:hover { background: rgba(255,255,255,0.15); transform: scale(1.02); }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hero h1 { font-size: 3rem; }
         }
 
@@ -501,6 +507,7 @@
             <div class="nav-menu">
                 <a href="#" onclick="toggleMenu()">Home</a>
                 <a href="#projects" onclick="toggleMenu()">OS Mods</a>
+                <a onclick="openGame(); toggleMenu()">Minigame</a>
                 <a onclick="openCredits(); toggleMenu()">Credits</a>
                 <a onclick="openPrank(); toggleMenu()" class="prank-link">Free Lisensi Win 10</a>
             </div>
@@ -510,7 +517,6 @@
 
     <section class="hero">
         <h1>FUTURE OF <br>WINDOWS</h1>
-        
         <div class="hero-glass-box">
             <p>Selamat datang di pengalaman <strong>NookLeaf (Win 11)</strong> dan <strong>KasaneProject (Win 10)</strong>. Desain transparan, performa tanpa batas, dan estetika.</p>
         </div>
@@ -525,14 +531,12 @@
                     <span class="card-subtitle nook-text">Windows 11</span>
                     <h2 class="card-title">NookLeaf</h2>
                     <p style="color:#aaa; margin-bottom:20px;">Nature & Aesthetics Edition</p>
-                    
                     <ul class="feature-list">
                         <li><span class="icon" style="color:var(--nook-green)">●</span> Based on Win 11 24H2</li>
                         <li><span class="icon" style="color:var(--nook-green)">●</span> Win 11 Base + Win 8.1 Taskbar UI</li>
                         <li><span class="icon" style="color:var(--nook-green)">●</span> No TPM / Secure Boot</li>
                         <li><span class="icon" style="color:var(--nook-green)">●</span> Debloated for Speed</li>
                     </ul>
-
                     <button class="ios-btn btn-nook" onclick="openDownloadModal('NookLeaf Windows 11')">Get NookLeaf</button>
                 </div>
             </div>
@@ -543,14 +547,12 @@
                     <span class="card-subtitle kasane-text">Windows 10</span>
                     <h2 class="card-title">KasaneProject</h2>
                     <p style="color:#aaa; margin-bottom:20px;">Red Drill Gaming Edition</p>
-                    
                     <ul class="feature-list">
                         <li><span class="icon" style="color:var(--kasane-red)">●</span> Based on Win 10 22H2</li>
                         <li><span class="icon" style="color:var(--kasane-red)">●</span> Ultra Low Latency</li>
                         <li><span class="icon" style="color:var(--kasane-red)">●</span> ISO Size: 1.5GB | Installed: 3.85GB</li>
                         <li><span class="icon" style="color:var(--kasane-red)">●</span> Usage RAM: 800MB</li>
                     </ul>
-
                     <button class="ios-btn btn-kasane" onclick="openDownloadModal('KasaneProject Windows 10')">Get Kasane</button>
                 </div>
             </div>
@@ -563,15 +565,11 @@
             <span class="close-btn" onclick="closeDownloadModal()">&times;</span>
             <h2 id="modalTitle">Download</h2>
             <p style="color:#aaa; margin-bottom:30px;">Select a mirror to start your download.</p>
-            
             <a href="https://sfl.gl/opDrRHjI" target="_blank" class="mirror-link">
-                <span>MediaFire (Fast)</span>
-                <span>➜</span>
+                <span>MediaFire (Fast)</span><span>➜</span>
             </a>
-
-            <a href="https://sfl.gl/LYKCf" target="_blank" class="mirror-link">
-                <span>Google Drive</span>
-                <span>➜</span>
+            <a href="https://sfl.gl/uzYo81g" target="_blank" class="mirror-link">
+                <span>Google Drive</span><span>➜</span>
             </a>
         </div>
     </div>
@@ -629,18 +627,34 @@
         </div>
     </div>
 
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGame()">&times;</span>
+            <h2 style="color: var(--kasane-red); margin-bottom: 20px;">TETO TRIVIA</h2>
+            
+            <div id="quiz-container">
+                <p id="question-text" style="font-size: 1.2rem; margin-bottom: 20px;">Loading...</p>
+                <div id="options-container" class="quiz-options"></div>
+                <p id="quiz-feedback" style="margin-top: 20px; font-weight: bold; min-height: 25px; font-style: italic;"></p>
+            </div>
+            
+            <button id="next-btn" class="ios-btn" style="margin-top:20px; display:none;" onclick="nextQuestion()">Next Question</button>
+            <button id="restart-btn" class="ios-btn" style="margin-top:20px; display:none; background:var(--nook-green);" onclick="initGame()">Main Lagi</button>
+        </div>
+    </div>
+
     <script>
         const navbar = document.getElementById("navbar");
         const downloadModal = document.getElementById("downloadModal");
         const creditsModal = document.getElementById("creditsModal");
         const prankModal = document.getElementById("prankModal");
+        const gameModal = document.getElementById("gameModal");
+        
         const modalTitle = document.getElementById("modalTitle");
         const rickrollVideo = document.getElementById("rickrollVideo");
 
-        // --- MOBILE MENU TOGGLE ---
-        function toggleMenu() {
-            navbar.classList.toggle("active");
-        }
+        // --- MOBILE MENU ---
+        function toggleMenu() { navbar.classList.toggle("active"); }
 
         // --- MODAL LOGIC ---
         function openDownloadModal(name) { downloadModal.style.display = "block"; modalTitle.innerText = name; }
@@ -652,12 +666,136 @@
         function openPrank() { prankModal.style.display = "block"; rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"; }
         function closePrank() { prankModal.style.display = "none"; rickrollVideo.src = ""; }
 
+        // --- GAME LOGIC (DENGAN REAKSI) ---
+        const questions = [
+            { q: "Berapa umur 'resmi' Kasane Teto?", options: ["15 Tahun", "31 Tahun", "100 Tahun", "Abadi"], ans: 1 },
+            { q: "Apa gender Kasane Teto?", options: ["Perempuan", "Chimera", "Robot", "Android"], ans: 1 },
+            { q: "Apa item favorit Teto?", options: ["Daun Bawang", "Jeruk", "Roti Prancis (Baguette)", "Pisang"], ans: 2 },
+            { q: "Siapa Voice Provider Teto?", options: ["Saki Fujita", "Oyamano Mayo", "Asami Shimoda", "Hatsune Miku"], ans: 1 },
+            { q: "Kapan tanggal rilis/ulang tahun Teto?", options: ["1 April (April Mop)", "31 Agustus", "10 Oktober", "1 Januari"], ans: 0 },
+            { q: "Teto awalnya dibuat sebagai lelucon untuk menipu fans siapa?", options: ["Kagamine Rin/Len", "Hatsune Miku", "Megurine Luka", "Meiko"], ans: 1 }
+        ];
+
+        // --- ARRAY REAKSI TETO ---
+        const correctReactions = [
+            "Yey bener! Pinter banget sih pacar aku~ 😘❤️",
+            "Aaa sayang tau banget tentang aku! Love you! 💕✨",
+            "Iih gemes deh bener! Sini peluk dulu! 🤗💖",
+            "100 buat kamu! Nanti kita makan roti Prancis bareng ya! 🥖💑",
+            "Wah hebat! Makin sayang deh sama kamu! 😻"
+        ];
+
+        const wrongReactions = [
+            "Ih salah! Kamu gak sayang aku ya? 🥺💔",
+            "Teto ngambek ah! Masa gitu aja gatau! 😤💨",
+            "Bukan itu ayang! Tidur di sofa ya malem ini! 🛋️😡",
+            "Hmph! Baka! Jawabannya bukan itu tau! 🥖💢",
+            "Kok salah sih? Aku gigit nih ya! 👿"
+        ];
+
+        let currentQIndex = 0;
+        let score = 0;
+
+        function openGame() {
+            gameModal.style.display = "block";
+            initGame();
+        }
+
+        function closeGame() {
+            gameModal.style.display = "none";
+        }
+
+        function initGame() {
+            currentQIndex = 0;
+            score = 0;
+            document.getElementById('restart-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentQIndex];
+            document.getElementById('question-text').innerText = q.q;
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+            document.getElementById('quiz-feedback').innerText = '';
+            document.getElementById('next-btn').style.display = 'none';
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        // FUNGSI CEK JAWABAN DENGAN REAKSI TETO
+        function checkAnswer(selectedIndex, btnElement) {
+            const correctIndex = questions[currentQIndex].ans;
+            const feedback = document.getElementById('quiz-feedback');
+            
+            // Disable tombol biar ga diklik lagi
+            const allBtns = document.querySelectorAll('.quiz-btn');
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIndex === correctIndex) {
+                // JIKA BENAR
+                btnElement.style.background = 'var(--nook-green)';
+                btnElement.style.borderColor = 'var(--nook-green)';
+                
+                // Pilih reaksi acak dari array 'correctReactions'
+                const randomReaction = correctReactions[Math.floor(Math.random() * correctReactions.length)];
+                feedback.innerText = randomReaction;
+                feedback.style.color = "var(--nook-green)";
+                score++;
+            } else {
+                // JIKA SALAH
+                btnElement.style.background = '#ff4444';
+                btnElement.style.borderColor = '#ff4444';
+                
+                // Pilih reaksi acak dari array 'wrongReactions'
+                const randomReaction = wrongReactions[Math.floor(Math.random() * wrongReactions.length)];
+                feedback.innerText = randomReaction + "\n(Jawabannya: " + questions[currentQIndex].options[correctIndex] + ")";
+                feedback.style.color = "#ff4444";
+            }
+
+            // Tombol Next
+            if (currentQIndex < questions.length - 1) {
+                document.getElementById('next-btn').style.display = 'block';
+            } else {
+                setTimeout(showResult, 2000);
+            }
+        }
+
+        function nextQuestion() {
+            currentQIndex++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            document.getElementById('question-text').innerText = "KUIS SELESAI!";
+            document.getElementById('options-container').innerHTML = `<div class='quiz-score'>Skor Kamu: ${score} / ${questions.length}</div>`;
+            
+            let finalMsg = "";
+            if(score === questions.length) finalMsg = "Wow! Kamu emang jodohku! Sempurna! 🥖💍";
+            else if(score > questions.length / 2) finalMsg = "Lumayan lah, tapi harus lebih sayang lagi ya! 😘";
+            else finalMsg = "Huuu payah! Belajar lagi tentang Teto ya! 😝";
+
+            document.getElementById('quiz-feedback').innerText = finalMsg;
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('restart-btn').style.display = 'block';
+        }
+
+        // --- CLOSE ON CLICK OUTSIDE ---
         window.onclick = function(e) {
             if (e.target == downloadModal) closeDownloadModal();
             if (e.target == creditsModal) closeCredits();
             if (e.target == prankModal) closePrank();
+            if (e.target == gameModal) closeGame();
         }
     </script>
 
 </body>
 </html>
+
