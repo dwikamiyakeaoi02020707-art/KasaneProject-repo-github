@@ -612,6 +612,11 @@
                 <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
                     Copyright (c) 2024 Nookleaf
                 </p>
+                
+                <div style="text-align: center; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                    <span>Butuh Password? </span>
+                    <a href="https://tempel.in/view/s08s" target="_blank" style="color: var(--kasane-red); font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--kasane-red);">Get Password Here</a>
+                </div>
             </div>
         </div>
     </div>
@@ -666,7 +671,7 @@
         function openPrank() { prankModal.style.display = "block"; rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"; }
         function closePrank() { prankModal.style.display = "none"; rickrollVideo.src = ""; }
 
-        // --- GAME LOGIC (DENGAN REAKSI) ---
+        // --- GAME LOGIC ---
         const questions = [
             { q: "Berapa umur 'resmi' Kasane Teto?", options: ["15 Tahun", "31 Tahun", "100 Tahun", "Abadi"], ans: 1 },
             { q: "Apa gender Kasane Teto?", options: ["Perempuan", "Chimera", "Robot", "Android"], ans: 1 },
@@ -674,11 +679,9 @@
             { q: "Siapa Voice Provider Teto?", options: ["Saki Fujita", "Oyamano Mayo", "Asami Shimoda", "Hatsune Miku"], ans: 1 },
             { q: "Kapan tanggal rilis/ulang tahun Teto?", options: ["1 April (April Mop)", "31 Agustus", "10 Oktober", "1 Januari"], ans: 0 },
             { q: "Teto awalnya dibuat sebagai lelucon untuk menipu fans siapa?", options: ["Kagamine Rin/Len", "Hatsune Miku", "Megurine Luka", "Meiko"], ans: 1 },
-            // Pertanyaan Baru: Tipe Loid
             { q: "Kasane Teto itu sebenarnya termasuk jenis Loid apa?", options: ["Vocaloid", "UTAUloid", "Fanloid", "Human"], ans: 1 }
         ];
 
-        // --- REAKSI TETO (GOMBAL & NGAMBEK) ---
         const correctReactions = [
             "Yey bener! Pinter banget sih pacar aku~ 😘❤️",
             "Aaa sayang tau banget tentang aku! Love you! 💕✨",
@@ -736,32 +739,24 @@
             const correctIndex = questions[currentQIndex].ans;
             const feedback = document.getElementById('quiz-feedback');
             
-            // Disable tombol agar tidak diklik lagi
             const allBtns = document.querySelectorAll('.quiz-btn');
             allBtns.forEach(b => b.disabled = true);
 
             if (selectedIndex === correctIndex) {
-                // BENAR
                 btnElement.style.background = 'var(--nook-green)';
                 btnElement.style.borderColor = 'var(--nook-green)';
-                
-                // Pilih reaksi acak BENAR
                 const randomReaction = correctReactions[Math.floor(Math.random() * correctReactions.length)];
                 feedback.innerText = randomReaction;
                 feedback.style.color = "var(--nook-green)";
                 score++;
             } else {
-                // SALAH
                 btnElement.style.background = '#ff4444';
                 btnElement.style.borderColor = '#ff4444';
-                
-                // Pilih reaksi acak SALAH
                 const randomReaction = wrongReactions[Math.floor(Math.random() * wrongReactions.length)];
                 feedback.innerText = randomReaction + "\n(Jawabannya: " + questions[currentQIndex].options[correctIndex] + ")";
                 feedback.style.color = "#ff4444";
             }
 
-            // Tombol Next
             if (currentQIndex < questions.length - 1) {
                 document.getElementById('next-btn').style.display = 'block';
             } else {
@@ -799,5 +794,6 @@
 
 </body>
 </html>
+
 
 
