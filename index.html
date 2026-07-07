@@ -3,797 +3,551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NookLeaf & KasaneProject | Glass Edition</title>
+    <title>Nookleaf & tetoOS</title>
+    <!-- Bootstrap 5 CDN (CSS & JS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --bg-dark: #000000;
-            --glass-bg: rgba(20, 20, 20, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-highlight: rgba(255, 255, 255, 0.05);
-            --blur-amt: 30px;
-            
-            --nook-green: #8bc53f;
-            --kasane-red: #ff2a6d;
-            --text-main: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-        }
-
+        /* GREEN THEME BACKGROUND */
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
+            background-color: #05100a;
+            background-image: radial-gradient(circle at 80% -10%, #114226 0%, #05100a 60%),
+                              radial-gradient(circle at 10% 90%, #0a2617 0%, transparent 50%);
+            color: #e2e8f0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* --- LIQUID BACKGROUND ANIMATION --- */
-        .liquid-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: floatBlob 20s infinite alternate ease-in-out;
-        }
-
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: var(--nook-green);
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: var(--kasane-red);
-            animation-delay: -5s;
-        }
-
-        .blob-3 {
-            top: 40%;
-            left: 40%;
-            width: 300px;
-            height: 300px;
-            background: #4a00e0;
-            animation-delay: -10s;
-        }
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
-        }
-
-        /* --- FLOATING NAV CAPSULE --- */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 95%;
-            max-width: 900px;
-            height: 70px;
-            
-            background: rgba(30, 30, 30, 0.6);
-            backdrop-filter: blur(var(--blur-amt));
-            -webkit-backdrop-filter: blur(var(--blur-amt));
-            border: 1px solid var(--glass-border);
-            border-radius: 100px;
-            
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 25px;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            z-index: 1002;
-        }
-
-        .nav-brand span {
-            font-weight: 800;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, var(--nook-green), #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Container Menu Utama */
-        .nav-menu-container {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-            padding: 10px 15px;
-            border-radius: 50px;
-            transition: all 0.3s;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .nav-menu a:hover {
-            background: rgba(255,255,255,0.1);
-            color: white;
-        }
-
-        /* Hamburger */
-        .hamburger {
-            display: none;
-            font-size: 1.8rem;
-            color: white;
-            cursor: pointer;
-            z-index: 1002;
-            padding: 5px;
-        }
-
-        /* Tombol Prank */
-        .prank-link {
-            color: #ffd700 !important;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
-            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
-            100% { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
-        }
-
-        .btn-glass-primary {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 24px;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
+        /* NAVBAR */
+        .navbar {
+            padding: 1.5rem 5%;
+            background: rgba(5, 16, 10, 0.4);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .brand-highlight { color: #10b981; }
+
+        .nav-link {
+            color: #94a3b8;
+            font-weight: 500;
+            margin: 0 10px;
             transition: 0.3s;
+            cursor: pointer;
         }
 
-        .btn-glass-primary:hover {
-            background: var(--nook-green);
-            border-color: var(--nook-green);
-            box-shadow: 0 0 20px rgba(139, 197, 63, 0.4);
-            color: black;
+        .nav-link:hover, .nav-link.active { color: #10b981; }
+
+        /* DROPDOWN GLASSMORPHISM STYLES */
+        .glass-dropdown {
+            background: rgba(10, 25, 15, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            min-width: 340px;
+            margin-top: 20px !important;
         }
 
-        /* --- MEDIA QUERY HP --- */
-        @media (max-width: 900px) {
-            nav {
-                border-radius: 30px;
-                padding: 15px 25px;
-                height: 70px;
-                overflow: hidden;
-                align-items: flex-start;
-                flex-wrap: wrap;
-            }
-
-            nav.active {
-                height: auto;
-                padding-bottom: 25px;
-                background: rgba(10, 10, 10, 0.95);
-            }
-
-            .hamburger {
-                display: block;
-                position: absolute;
-                top: 15px;
-                right: 25px;
-            }
-
-            .nav-menu-container {
-                width: 100%;
-                flex-direction: column;
-                margin-top: 50px;
-                gap: 15px;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
-            }
-
-            nav.active .nav-menu-container {
-                opacity: 1;
-                pointer-events: all;
-            }
-
-            .nav-menu a, .btn-glass-primary {
-                width: 100%;
-                text-align: center;
-                padding: 15px;
-                background: rgba(255,255,255,0.05);
-            }
-            
-            .nav-menu {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                gap: 10px;
-            }
+        .glass-dropdown .dropdown-item {
+            border-radius: 10px;
+            padding: 14px 16px;
+            transition: all 0.3s ease;
+            background: transparent;
+            margin-bottom: 5px;
         }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
+        .glass-dropdown .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .glass-dropdown .dropdown-item:hover {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .project-icon-box {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
 
-        .hero h1 {
-            font-size: 5rem;
-            line-height: 1;
+        /* Ikon & Warna Latar Tiap Proyek */
+        .icon-nookleaf { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .icon-archleaf { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .icon-teto     { background: rgba(244, 63, 94, 0.15);  color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
+        
+        .dropdown-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dropdown-desc {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin: 0;
+            white-space: normal;
+        }
+        
+        .badge-comingsoon {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            font-size: 0.6rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* BUTTONS */
+        .btn-primary-green {
+            background-color: #10b981;
+            color: #022c22;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 28px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-primary-green:hover {
+            background-color: #34d399;
+            color: #022c22;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-outline-green {
+            border: 2px solid rgba(16, 185, 129, 0.5);
+            color: #10b981;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .btn-outline-green:hover {
+            border-color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+        }
+
+        /* HERO SECTION */
+        .hero-section { padding: 120px 5% 60px; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #34d399;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px #34d399;
+        }
+
+        .main-title {
+            font-size: 4rem;
             font-weight: 800;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.5));
+            line-height: 1.15;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            drop-shadow(0 0 10px rgba(255,255,255,0.2));
         }
 
-        .hero-glass-box {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--blur-amt));
-            -webkit-backdrop-filter: blur(var(--blur-amt));
-            border: 1px solid var(--glass-border);
-            padding: 30px 50px;
-            border-radius: 30px;
-            max-width: 700px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            margin-top: 30px;
+        .hero-desc {
+            color: #94a3b8;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 90%;
         }
 
-        .hero-glass-box p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
-        }
-
-        /* --- GRID CARDS --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 20px 100px 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            justify-content: center;
-        }
-
-        .glass-card {
-            background: linear-gradient(160deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 40px;
+        /* GLASSMORPHISM CARDS & MODALS */
+        .glass-card, .glass-modal {
+            background: rgba(10, 25, 15, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .glass-card::before {
+        .glass-card { padding: 30px; }
+        
+        .glass-card::before, .glass-modal::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
-            pointer-events: none;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            opacity: 0.5;
         }
 
-        .glass-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: rgba(255,255,255,0.3);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        .system-font {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #cbd5e1;
         }
 
-        .card-glow {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-        }
-
-        .glow-green { background: var(--nook-green); }
-        .glow-red { background: var(--kasane-red); }
-
-        .card-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .card-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-        }
-        
-        .card-subtitle {
-            font-size: 1.1rem;
+        .system-label {
+            color: #64748b;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.1);
-            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .nook-text { color: var(--nook-green); }
-        .kasane-text { color: var(--kasane-red); }
-
-        .feature-list {
-            list-style: none;
-            margin-bottom: 30px;
+        /* MODAL SPECIFIC STYLES */
+        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 30px; }
+        .modal-body { padding: 30px; }
+        .modal-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 20px 30px; }
+        .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); }
+        
+        .changelog-section {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.02);
         }
-
-        .feature-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
+        .changelog-title {
+            color: #10b981;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
-        
-        .feature-list li:last-child { border-bottom: none; }
-
-        .icon {
-            margin-right: 15px;
-            font-size: 1.2rem;
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
         }
-
-        .ios-btn {
-            display: block;
-            width: 100%;
-            padding: 18px;
-            text-align: center;
-            border-radius: 25px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .btn-nook:hover {
-            background: var(--nook-green);
-            color: black;
-            box-shadow: 0 0 30px rgba(139, 197, 63, 0.5);
-        }
-
-        .btn-kasane:hover {
-            background: var(--kasane-red);
-            color: white;
-            box-shadow: 0 0 30px rgba(255, 42, 109, 0.5);
-        }
-
-        /* --- MODAL (GENERAL) --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: rgba(30, 30, 30, 0.9);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
-            margin: 5% auto;
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            width: 90%;
-            max-width: 500px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        ul.custom-list { list-style-type: none; padding-left: 0; }
+        ul.custom-list li {
+            margin-bottom: 8px;
+            padding-left: 24px;
             position: relative;
+            color: #cbd5e1;
         }
-
-        .credits-content {
-            max-width: 650px;
-            text-align: left;
-            max-height: 85vh;
-            overflow-y: auto;
+        ul.custom-list li::before {
+            content: '>';
+            color: #10b981;
+            position: absolute;
+            left: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: bold;
         }
-        .credits-content::-webkit-scrollbar { width: 8px; }
-        .credits-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-
-        .credits-header {
-            text-align: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .credits-header h2 { font-size: 1.8rem; color: var(--nook-green); margin-bottom: 10px; }
-
-        .credits-body h3 { color: var(--text-main); margin-top: 25px; margin-bottom: 10px; font-size: 1.2rem; border-left: 3px solid var(--kasane-red); padding-left: 10px; }
-        .credits-body p, .credits-body li { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 8px; }
-        .credits-body ul, .credits-body ol { margin-left: 20px; margin-bottom: 15px; }
-
-        /* --- PRANK & QUIZ MODAL STYLING --- */
-        #prankModal .modal-content { border-color: #ff4444; box-shadow: 0 0 50px rgba(255, 68, 68, 0.4); }
-        .rickroll-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; margin-top: 20px; border: 2px solid #ff4444; }
-        .rickroll-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        /* Quiz Styles */
-        #gameModal .modal-content { border-color: var(--kasane-red); box-shadow: 0 0 30px rgba(255, 42, 109, 0.3); }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-        .quiz-btn {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            color: white; padding: 12px; border-radius: 10px; cursor: pointer; transition: 0.3s;
-        }
-        .quiz-btn:hover { background: var(--kasane-red); border-color: var(--kasane-red); }
-        .quiz-score { font-size: 1.5rem; font-weight: bold; color: var(--nook-green); margin-top: 20px; }
-
-        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 2rem; cursor: pointer; color: #aaa; transition: 0.2s; line-height: 1; }
-        .close-btn:hover { color: white; }
-
-        .mirror-link { display: flex; align-items: center; justify-content: space-between; margin: 15px 0; padding: 20px; background: rgba(255,255,255,0.05); color: white; text-decoration: none; border-radius: 20px; transition: 0.2s; font-weight: 600; }
-        .mirror-link:hover { background: rgba(255,255,255,0.15); transform: scale(1.02); }
-
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
-        }
-
     </style>
 </head>
 <body>
 
-    <div class="liquid-wrapper">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                🌿 Nook<span class="brand-highlight">leaf</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="filter: invert(1);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <nav id="navbar">
-        <div class="nav-brand">
-            <span>NOOKLEAF</span>
-        </div>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Overview</a></li>
+                    
+                    <!-- PROJECTS DROPDOWN -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarProjects" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Projects
+                        </a>
+                        <ul class="dropdown-menu glass-dropdown" aria-labelledby="navbarProjects">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="project-icon-box icon-nookleaf">🌿</div>
+                                    <div>
+                                        <div class="dropdown-title">Nookleaf <span class="badge badge-comingsoon">COMING SOON</span></div>
+                                        <p class="dropdown-desc">Privacy, Productivity & Fluid UI</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="project-icon-box icon-archleaf">🦅</div>
+                                    <div>
+                                        <div class="dropdown-title">Archleaf <span class="badge badge-comingsoon">COMING SOON</span></div>
+                                        <p class="dropdown-desc">Advanced Custom OS Architecture</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="project-icon-box icon-teto">🥖</div>
+                                    <div>
+                                        <div class="dropdown-title">TetoOS <span class="badge badge-comingsoon">COMING SOON</span></div>
+                                        <p class="dropdown-desc">The Ultimate Lightweight Experience</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+                    <!-- TOMBOL CREDITS (MEMANGGIL MODAL) -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="modal" data-bs-target="#creditsModal">Credits</a>
+                    </li>
 
-        <div class="nav-menu-container">
-            <div class="nav-menu">
-                <a href="#" onclick="toggleMenu()">Home</a>
-                <a href="#projects" onclick="toggleMenu()">OS Mods</a>
-                <a onclick="openGame(); toggleMenu()">Minigame</a>
-                <a onclick="openCredits(); toggleMenu()">Credits</a>
-                <a onclick="openPrank(); toggleMenu()" class="prank-link">Free Lisensi Win 10</a>
+                    <!-- LINK WEB KOMUNITAS VERCEL -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://tetoyapping.vercel.app/" target="_blank">Community</a>
+                    </li>
+                </ul>
             </div>
-            <a href="https://saweria.co/tetoyapping29312" target="_blank" class="btn-glass-primary">Donate</a>
+            
+            <!-- LINK WHATSAPP TETOYAPPING -->
+            <a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" target="_blank" class="btn btn-outline-green d-none d-lg-block">TetoYapping Chat</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>FUTURE OF <br>WINDOWS</h1>
-        <div class="hero-glass-box">
-            <p>Selamat datang di pengalaman <strong>NookLeaf (Win 11)</strong> dan <strong>KasaneProject (Win 10)</strong>. Desain transparan, performa tanpa batas, dan estetika.</p>
-        </div>
-    </section>
-
-    <div id="projects" class="container">
-        <div class="grid">
+    <!-- Hero Section -->
+    <div class="container hero-section">
+        <div class="row align-items-center min-vh-100">
             
-            <div class="glass-card">
-                <div class="card-glow glow-green"></div>
-                <div class="card-content">
-                    <span class="card-subtitle nook-text">Windows 11</span>
-                    <h2 class="card-title">NookLeaf</h2>
-                    <p style="color:#aaa; margin-bottom:20px;">Nature & Aesthetics Edition</p>
-                    <ul class="feature-list">
-                        <li><span class="icon" style="color:var(--nook-green)">●</span> Based on Win 11 24H2</li>
-                        <li><span class="icon" style="color:var(--nook-green)">●</span> Win 11 Base + Win 8.1 Taskbar UI</li>
-                        <li><span class="icon" style="color:var(--nook-green)">●</span> No TPM / Secure Boot</li>
-                        <li><span class="icon" style="color:var(--nook-green)">●</span> Debloated for Speed</li>
-                    </ul>
-                    <button class="ios-btn btn-nook" onclick="openDownloadModal('NookLeaf Windows 11')">Get NookLeaf</button>
+            <!-- Kolom Kiri -->
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="status-badge">
+                    <span class="dot"></span> Teto OS 10 is Now Live
                 </div>
-            </div>
-
-            <div class="glass-card">
-                <div class="card-glow glow-red"></div>
-                <div class="card-content">
-                    <span class="card-subtitle kasane-text">Windows 10</span>
-                    <h2 class="card-title">KasaneProject</h2>
-                    <p style="color:#aaa; margin-bottom:20px;">Red Drill Gaming Edition</p>
-                    <ul class="feature-list">
-                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Based on Win 10 22H2</li>
-                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Ultra Low Latency</li>
-                        <li><span class="icon" style="color:var(--kasane-red)">●</span> ISO Size: 1.5GB | Installed: 3.85GB</li>
-                        <li><span class="icon" style="color:var(--kasane-red)">●</span> Usage RAM: 800MB</li>
-                    </ul>
-                    <button class="ios-btn btn-kasane" onclick="openDownloadModal('KasaneProject Windows 10')">Get Kasane</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="downloadModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeDownloadModal()">&times;</span>
-            <h2 id="modalTitle">Download</h2>
-            <p style="color:#aaa; margin-bottom:30px;">Select a mirror to start your download.</p>
-            <a href="https://sfl.gl/opDrRHjI" target="_blank" class="mirror-link">
-                <span>MediaFire (Fast)</span><span>➜</span>
-            </a>
-            <a href="https://sfl.gl/uzYo81g" target="_blank" class="mirror-link">
-                <span>Google Drive</span><span>➜</span>
-            </a>
-        </div>
-    </div>
-
-    <div id="creditsModal" class="modal">
-        <div class="modal-content credits-content">
-            <span class="close-btn" onclick="closeCredits()">&times;</span>
-            <div class="credits-header">
-                <h2>CREDITS & INFO</h2>
-                <p>Nookleaf and KasaneProject Collaboration</p>
-            </div>
-            <div class="credits-body">
-                <p>Selamat datang di proyek kolaborasi spesial antara Nookleaf dan KasaneProject. Modifikasi Windows ini dirancang untuk memberikan pengalaman desktop yang estetik, personal, dan harmonis melalui perpaduan seni visual dan desain suara yang unik.</p>
-                <h3>🛠️ Tim Pengembang</h3>
-                <p>Proyek ini terwujud berkat dedikasi dari para kreator berikut:</p>
-                <ul>
-                    <li><strong>Lead Modder:</strong> Vincent, Hirolizia, Holymagi</li>
-                    <li><strong>Ilustrator:</strong> Dwika Rahma Putri (Logo)</li>
-                    <li><strong>Wallpaper Desainer:</strong> AES™</li>
-                    <li><strong>Desainer:</strong> Hirolizia, Holymagi</li>
-                    <li><strong>Sound Desainer:</strong> DavidMounder9598</li>
-                </ul>
-                <h3>✨ Fitur Utama</h3>
-                <ul>
-                    <li><strong>Custom Startup Sound:</strong> Pengalaman audio eksklusif saat pertama kali menyalakan PC.</li>
-                    <li><strong>Original Artwork:</strong> Wallpaper dan aset visual yang tidak akan ditemukan di tempat lain.</li>
-                    <li><strong>Themed Icons & Skin:</strong> Perubahan menyeluruh pada ikon sistem agar selaras dengan tema.</li>
-                    <li><strong>Lightweight Performance:</strong> Optimasi sistem agar tetap ringan meski menggunakan tema kustom.</li>
-                </ul>
-                <h3>📜 Catatan Lisensi</h3>
-                <ol>
-                    <li>DILARANG KERAS mengambil, mengunggah ulang, atau mendistribusikan file ISO ini di platform lain tanpa izin tertulis dari pihak Modder (Nookleaf).</li>
-                    <li>Seluruh aset visual (Wallpaper/Ilustrasi) dan audio adalah hak cipta kreator.</li>
-                    <li>Mod ini disediakan untuk penggunaan pribadi, bukan untuk diperjualbelikan dan tidak boleh membagikan ulang file menggunakan shortlink pribadi demi keuntungan (cuan). Seluruh link distribusi harus menggunakan shortlink resmi dari Modder.</li>
-                </ol>
-                <br>
-                <p style="text-align: center; font-weight: bold; color: var(--kasane-red);">
-                    Segala bentuk pelanggaran distribusi tanpa izin akan ditindaklanjuti. Hargailah karya para kreator.
-                </p>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
-                    Copyright (c) 2024 Nookleaf
+                
+                <h1 class="main-title">
+                    Redefining your<br>
+                    <span class="text-gradient">Desktop Experience.</span>
+                </h1>
+                
+                <p class="hero-desc">
+                    Tingkatkan performa PC kamu dengan <strong>tetoOS</strong>. Sistem operasi yang dimodifikasi khusus untuk memberikan latency terendah, penggunaan RAM efisien, dan stabilitas maksimal saat bermain game.
                 </p>
                 
-                <div style="text-align: center; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-                    <span>Butuh Password? </span>
-                    <a href="https://tempel.in/view/s08s" target="_blank" style="color: var(--kasane-red); font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--kasane-red);">Get Password Here</a>
+                <div class="d-flex flex-wrap gap-3">
+                    <!-- LINK DOWNLOAD TETO OS -->
+                    <a href="https://sfl.gl/5qOjJu" target="_blank" class="btn btn-primary-green text-decoration-none">Download tetoOS</a>
+                    <button type="button" class="btn btn-outline-green" data-bs-toggle="modal" data-bs-target="#changelogModal">
+                        View Changelog
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan -->
+            <div class="col-lg-6">
+                <div class="row gap-4 justify-content-end">
+                    <div class="col-12 col-md-10">
+                        <div class="glass-card">
+                            <span class="system-label">Project In Development</span>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="m-0 fw-bold" style="color: #fff;">Nookleaf OS</h3>
+                                <span class="badge" style="background-color: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">COMING SOON</span>
+                            </div>
+                            <div class="system-font mb-4">
+                                <span style="color: #10b981;">></span> Architecture: Nook Core v1.0<br>
+                                <span style="color: #10b981;">></span> Focus: Privacy, Productivity & Fluid UI<br>
+                                <span style="color: #10b981;">></span> Progress: Building kernel modules... 45%<br>
+                            </div>
+                            <button class="btn w-100" style="background-color: rgba(255,255,255,0.02); color: #64748b; border: 1px dashed #475569; cursor: not-allowed; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem;" disabled>
+                                🔒 Changelog (Classified)
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <div class="glass-card" style="padding: 20px 30px; background: rgba(16, 185, 129, 0.05);">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="system-label" style="margin-bottom: 5px;">Stable Release</span>
+                                    <h5 class="m-0 fw-bold" style="color: #fff;">tetoOS 10</h5>
+                                </div>
+                                <span class="badge" style="background-color: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">ONLINE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL CREDITS & INFO -->
+    <div class="modal fade" id="creditsModal" tabindex="-1" aria-labelledby="creditsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content glass-modal text-light border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="creditsModalLabel" style="color: #fff;">
+                        📝 CREDITS & INFO
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body system-font" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                    
+                    <h6 class="fw-bold mb-3" style="color: #10b981;">Nookleaf and KasaneProject Collaboration</h6>
+                    <p style="color: #cbd5e1; line-height: 1.7;">
+                        Selamat datang di proyek kolaborasi spesial antara Nookleaf dan KasaneProject. Modifikasi Windows ini dirancang untuk memberikan pengalaman desktop yang estetik, personal, dan harmonis melalui perpaduan seni visual dan desain suara yang unik.
+                    </p>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">🛠️ Tim Pengembang</div>
+                        <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 10px;">Proyek ini terwujud berkat dedikasi dari para kreator berikut:</p>
+                        <ul class="custom-list system-font" style="font-size: 0.9rem;">
+                            <li><strong>Lead Modder:</strong> Vincent, Hirolizia, Holymagi</li>
+                            <li><strong>Ilustrator:</strong> Dwika Rahma Putri (Logo)</li>
+                            <li><strong>Wallpaper Desainer:</strong> AES™</li>
+                            <li><strong>Desainer:</strong> Hirolizia, Holymagi</li>
+                            <li><strong>Sound Desainer:</strong> DavidMounder9598</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">✨ Fitur Utama</div>
+                        <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
+                            <li class="mb-2">✅ <strong>Custom Startup Sound:</strong> Pengalaman audio eksklusif saat pertama kali menyalakan PC.</li>
+                            <li class="mb-2">✅ <strong>Original Artwork:</strong> Wallpaper dan aset visual yang tidak akan ditemukan di tempat lain.</li>
+                            <li class="mb-2">✅ <strong>Themed Icons & Skin:</strong> Perubahan menyeluruh pada ikon sistem agar selaras dengan tema.</li>
+                            <li class="mb-2">✅ <strong>Lightweight Performance:</strong> Optimasi sistem agar tetap ringan meski menggunakan tema kustom.</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box mb-4">
+                        <div class="fw-bold mb-2" style="color: #fca5a5;">📜 Catatan Lisensi</div>
+                        <ul class="mb-0 ps-3" style="color: #fecaca; font-size: 0.9rem;">
+                            <li><strong>DILARANG KERAS</strong> mengambil, mengunggah ulang, atau mendistribusikan file ISO ini di platform lain tanpa izin tertulis dari pihak Modder (Nookleaf).</li>
+                            <li>Seluruh aset visual (Wallpaper/Ilustrasi) dan audio adalah hak cipta kreator.</li>
+                            <li>Mod ini disediakan untuk penggunaan pribadi, bukan untuk diperjualbelikan dan <strong>tidak boleh membagikan ulang file menggunakan shortlink pribadi demi keuntungan (cuan)</strong>. Seluruh link distribusi harus menggunakan shortlink resmi dari Modder.</li>
+                            <li class="mt-3 text-decoration-underline text-center d-block">Segala bentuk pelanggaran distribusi tanpa izin akan ditindaklanjuti. Hargailah karya para kreator.</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <span class="text-muted" style="font-size: 0.85rem;">Copyright (c) 2024 Nookleaf</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="prankModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closePrank()">&times;</span>
-            <h1 style="color: #ff4444; font-size: 2.5rem; text-shadow: 0 0 20px rgba(255,0,0,0.5);">SELAMAT KENA PRANK! 🤣</h1>
-            <p style="color: #fff; font-size: 1.2rem; margin-top: 10px;">Mana ada Windows gratis bang... wkwkwk</p>
-            <div class="rickroll-container">
-                <iframe id="rickrollVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- MODAL CHANGELOG TETO OS -->
+    <div class="modal fade" id="changelogModal" tabindex="-1" aria-labelledby="changelogModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content glass-modal text-light border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="changelogModalLabel" style="color: #fff;">
+                        🖥️ [RELEASE] tetoOS Early Version
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body system-font" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                    
+                    <p style="color: #cbd5e1; line-height: 1.7;">
+                        Halo sobat Nookleaf! Akhirnya yang ditunggu-tunggu tiba. tetoOS versi awal sudah siap untuk kalian coba! Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto 🥖. Cocok banget buat kalian yang punya spek PC/Laptop "kentang" atau yang ingin performa gaming tanpa gangguan bloatware!
+                    </p>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">📊 DETAIL INFORMASI</div>
+                        <ul class="custom-list system-font" style="font-size: 0.9rem;">
+                            <li><strong>File:</strong> tetoOS-early_ver-08513M26_prep.iso</li>
+                            <li><strong>Edition:</strong> SUPERLITE</li>
+                            <li><strong>State:</strong> Early Version (Prep)</li>
+                            <li><strong>Base:</strong> Windows 10 Enterprise LTSC IoT 22H2</li>
+                            <li><strong>Compiled:</strong> March 03, 2026</li>
+                            <li><strong>MD5:</strong> 3C33150E210056DB9BDFBA19907AFC0D</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">✨ FITUR UNGGULAN</div>
+                        <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
+                            <li class="mb-2">✅ <strong>Teto Aesthetic:</strong> Kursor, wallpaper, dan skema suara eksklusif Kasane Teto.</li>
+                            <li class="mb-2">✅ <strong>Performance Boost:</strong> Debloated, Compact NTFS Compression, & Custom Power Profile.</li>
+                            <li class="mb-2">✅ <strong>New UI:</strong> Taskbar ala 8.x dan rebranding total brand Windows.</li>
+                            <li class="mb-2">✅ <strong>Stay Stable:</strong> Windows Update Permanent Pause Mode (Anti-update tiba-tiba!).</li>
+                            <li class="mb-2">✅ <strong>Low Footprint:</strong> Sangat ringan, ramah untuk perangkat low-mid spec.</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box mb-4">
+                        <div class="fw-bold mb-2" style="color: #fca5a5;">⚠️ PERHATIAN (ISO RULES):</div>
+                        <ul class="mb-0 ps-3" style="color: #fecaca; font-size: 0.9rem;">
+                            <li><strong>Dilarang Reupload!</strong> Gunakan link resmi untuk men-support project ini.</li>
+                            <li><strong>Dilarang Shortlink Cuan!</strong> Jangan mengambil untung dari hasil reupload file kami.</li>
+                            <li><strong>No Modifikasi!</strong> Dilarang membongkar/modifikasi ulang ISO ini tanpa izin.</li>
+                            <li><strong>Resiko Sendiri:</strong> Gunakan di Virtual Machine terlebih dahulu jika ragu. Use at your own risk!</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-section mb-0">
+                        <div class="changelog-title">🤝 CREDITS & THANKS TO</div>
+                        <ul class="custom-list system-font" style="font-size: 0.9rem;">
+                            <li><strong>OS Base:</strong> elzeXD</li>
+                            <li><strong>Lead Modder:</strong> Holymagi & Hirolizia</li>
+                            <li><strong>Illustrators:</strong> Dwika Rahma Ghania Putri (Logo), Hirolizia (OS Assets)</li>
+                            <li><strong>Stock Wallpaper:</strong> AES™</li>
+                            <li><strong>Sound Schemes:</strong> DavidMounder9598</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <span class="text-muted" style="font-size: 0.85rem;">Join TetoYapping community for discussions!</span>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-
-    <div id="gameModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeGame()">&times;</span>
-            <h2 style="color: var(--kasane-red); margin-bottom: 20px;">TETO TRIVIA</h2>
-            
-            <div id="quiz-container">
-                <p id="question-text" style="font-size: 1.2rem; margin-bottom: 20px;">Loading...</p>
-                <div id="options-container" class="quiz-options"></div>
-                <p id="quiz-feedback" style="margin-top: 20px; font-weight: bold; min-height: 25px; font-style: italic; white-space: pre-wrap;"></p>
-            </div>
-            
-            <button id="next-btn" class="ios-btn" style="margin-top:20px; display:none;" onclick="nextQuestion()">Next Question</button>
-            <button id="restart-btn" class="ios-btn" style="margin-top:20px; display:none; background:var(--nook-green);" onclick="initGame()">Main Lagi</button>
-        </div>
-    </div>
-
-    <script>
-        const navbar = document.getElementById("navbar");
-        const downloadModal = document.getElementById("downloadModal");
-        const creditsModal = document.getElementById("creditsModal");
-        const prankModal = document.getElementById("prankModal");
-        const gameModal = document.getElementById("gameModal");
-        
-        const modalTitle = document.getElementById("modalTitle");
-        const rickrollVideo = document.getElementById("rickrollVideo");
-
-        // --- MOBILE MENU ---
-        function toggleMenu() { navbar.classList.toggle("active"); }
-
-        // --- MODAL LOGIC ---
-        function openDownloadModal(name) { downloadModal.style.display = "block"; modalTitle.innerText = name; }
-        function closeDownloadModal() { downloadModal.style.display = "none"; }
-
-        function openCredits() { creditsModal.style.display = "block"; }
-        function closeCredits() { creditsModal.style.display = "none"; }
-
-        function openPrank() { prankModal.style.display = "block"; rickrollVideo.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0"; }
-        function closePrank() { prankModal.style.display = "none"; rickrollVideo.src = ""; }
-
-        // --- GAME LOGIC ---
-        const questions = [
-            { q: "Berapa umur 'resmi' Kasane Teto?", options: ["15 Tahun", "31 Tahun", "100 Tahun", "Abadi"], ans: 1 },
-            { q: "Apa gender Kasane Teto?", options: ["Perempuan", "Chimera", "Robot", "Android"], ans: 1 },
-            { q: "Apa item favorit Teto?", options: ["Daun Bawang", "Jeruk", "Roti Prancis (Baguette)", "Pisang"], ans: 2 },
-            { q: "Siapa Voice Provider Teto?", options: ["Saki Fujita", "Oyamano Mayo", "Asami Shimoda", "Hatsune Miku"], ans: 1 },
-            { q: "Kapan tanggal rilis/ulang tahun Teto?", options: ["1 April (April Mop)", "31 Agustus", "10 Oktober", "1 Januari"], ans: 0 },
-            { q: "Teto awalnya dibuat sebagai lelucon untuk menipu fans siapa?", options: ["Kagamine Rin/Len", "Hatsune Miku", "Megurine Luka", "Meiko"], ans: 1 },
-            { q: "Kasane Teto itu sebenarnya termasuk jenis Loid apa?", options: ["Vocaloid", "UTAUloid", "Fanloid", "Human"], ans: 1 }
-        ];
-
-        const correctReactions = [
-            "Yey bener! Pinter banget sih pacar aku~ 😘❤️",
-            "Aaa sayang tau banget tentang aku! Love you! 💕✨",
-            "Iih gemes deh bener! Sini peluk dulu! 🤗💖",
-            "100 buat kamu! Nanti kita makan roti Prancis bareng ya! 🥖💑",
-            "Wah hebat! Makin sayang deh sama kamu! 😻"
-        ];
-
-        const wrongReactions = [
-            "Ih salah! Kamu gak sayang aku ya? 🥺💔",
-            "Teto ngambek ah! Masa gitu aja gatau! 😤💨",
-            "Bukan itu ayang! Tidur di sofa ya malem ini! 🛋️😡",
-            "Hmph! Baka! Jawabannya bukan itu tau! 🥖💢",
-            "Kok salah sih? Aku gigit nih ya! 👿"
-        ];
-
-        let currentQIndex = 0;
-        let score = 0;
-
-        function openGame() {
-            gameModal.style.display = "block";
-            initGame();
-        }
-
-        function closeGame() {
-            gameModal.style.display = "none";
-        }
-
-        function initGame() {
-            currentQIndex = 0;
-            score = 0;
-            document.getElementById('restart-btn').style.display = 'none';
-            document.getElementById('next-btn').style.display = 'none';
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const q = questions[currentQIndex];
-            document.getElementById('question-text').innerText = q.q;
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
-            document.getElementById('quiz-feedback').innerText = '';
-            document.getElementById('next-btn').style.display = 'none';
-
-            q.options.forEach((opt, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'quiz-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(index, btn);
-                container.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(selectedIndex, btnElement) {
-            const correctIndex = questions[currentQIndex].ans;
-            const feedback = document.getElementById('quiz-feedback');
-            
-            const allBtns = document.querySelectorAll('.quiz-btn');
-            allBtns.forEach(b => b.disabled = true);
-
-            if (selectedIndex === correctIndex) {
-                btnElement.style.background = 'var(--nook-green)';
-                btnElement.style.borderColor = 'var(--nook-green)';
-                const randomReaction = correctReactions[Math.floor(Math.random() * correctReactions.length)];
-                feedback.innerText = randomReaction;
-                feedback.style.color = "var(--nook-green)";
-                score++;
-            } else {
-                btnElement.style.background = '#ff4444';
-                btnElement.style.borderColor = '#ff4444';
-                const randomReaction = wrongReactions[Math.floor(Math.random() * wrongReactions.length)];
-                feedback.innerText = randomReaction + "\n(Jawabannya: " + questions[currentQIndex].options[correctIndex] + ")";
-                feedback.style.color = "#ff4444";
-            }
-
-            if (currentQIndex < questions.length - 1) {
-                document.getElementById('next-btn').style.display = 'block';
-            } else {
-                setTimeout(showResult, 2000);
-            }
-        }
-
-        function nextQuestion() {
-            currentQIndex++;
-            loadQuestion();
-        }
-
-        function showResult() {
-            document.getElementById('question-text').innerText = "KUIS SELESAI!";
-            document.getElementById('options-container').innerHTML = `<div class='quiz-score'>Skor Kamu: ${score} / ${questions.length}</div>`;
-            
-            let finalMsg = "";
-            if(score === questions.length) finalMsg = "Wow! Kamu emang jodohku! Sempurna! 🥖💍";
-            else if(score > questions.length / 2) finalMsg = "Lumayan lah, tapi harus lebih sayang lagi ya! 😘";
-            else finalMsg = "Huuu payah! Belajar lagi tentang Teto ya! 😝";
-
-            document.getElementById('quiz-feedback').innerText = finalMsg;
-            document.getElementById('next-btn').style.display = 'none';
-            document.getElementById('restart-btn').style.display = 'block';
-        }
-
-        // --- CLOSE ON CLICK OUTSIDE ---
-        window.onclick = function(e) {
-            if (e.target == downloadModal) closeDownloadModal();
-            if (e.target == creditsModal) closeCredits();
-            if (e.target == prankModal) closePrank();
-            if (e.target == gameModal) closeGame();
-        }
-    </script>
 
 </body>
 </html>
-
 
 
