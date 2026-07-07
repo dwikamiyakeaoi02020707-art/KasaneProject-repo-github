@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -19,7 +20,108 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: hidden; /* Terkunci saat OOBE Boot berjalan */
         }
+
+        /* OOBE BOOT & SHUTDOWN SCREEN STYLES */
+        #oobe-screen, #shutdown-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #030805;
+            background-image: radial-gradient(circle at 50% 50%, #0a2617 0%, #030805 100%);
+            z-index: 99999; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-out, visibility 1.5s;
+        }
+
+        /* Layar Shutdown disembunyikan di awal */
+        #shutdown-screen {
+            opacity: 0;
+            visibility: hidden;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .oobe-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        .oobe-logo span { color: #10b981; }
+
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+            to { text-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+        }
+
+        /* STYLE LOADING BAR OOBE */
+        .blinking-text {
+            color: #10b981;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            animation: blinker 1.5s linear infinite;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        .loading-container {
+            width: 300px;
+            margin-top: 20px;
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .progress-bar-box {
+            width: 100%;
+            height: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            transition: width 0.1s linear;
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        /* Loader Spinner untuk Shutdown */
+        .shutdown-loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(16, 185, 129, 0.2);
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 30px;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* NAVBAR */
         .navbar {
@@ -51,7 +153,6 @@
         .glass-dropdown {
             background: rgba(10, 25, 15, 0.85);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 16px;
             padding: 12px;
@@ -68,13 +169,7 @@
             margin-bottom: 5px;
         }
 
-        .glass-dropdown .dropdown-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .glass-dropdown .dropdown-item:hover {
-            background: rgba(16, 185, 129, 0.1);
-        }
+        .glass-dropdown .dropdown-item:hover { background: rgba(16, 185, 129, 0.1); }
 
         .project-icon-box {
             width: 45px;
@@ -88,27 +183,12 @@
             flex-shrink: 0;
         }
 
-        /* Ikon & Warna Latar Tiap Proyek */
         .icon-nookleaf { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
         .icon-archleaf { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
         .icon-teto     { background: rgba(244, 63, 94, 0.15);  color: #f43f5e; border: 1px solid rgba(244, 63, 94, 0.3); }
         
-        .dropdown-title {
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin-bottom: 3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .dropdown-desc {
-            color: #94a3b8;
-            font-size: 0.85rem;
-            margin: 0;
-            white-space: normal;
-        }
+        .dropdown-title { color: #fff; font-weight: 700; font-size: 1.05rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        .dropdown-desc { color: #94a3b8; font-size: 0.85rem; margin: 0; }
         
         .badge-comingsoon {
             background-color: rgba(245, 158, 11, 0.15);
@@ -117,7 +197,6 @@
             font-size: 0.6rem;
             padding: 4px 8px;
             border-radius: 6px;
-            letter-spacing: 0.5px;
         }
 
         /* BUTTONS */
@@ -132,28 +211,32 @@
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
         
-        .btn-primary-green:hover {
-            background-color: #34d399;
-            color: #022c22;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
+        .btn-primary-green:hover { background-color: #34d399; color: #022c22; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
 
         .btn-outline-green {
             border: 2px solid rgba(16, 185, 129, 0.5);
             color: #10b981;
             border-radius: 8px;
-            padding: 10px 28px;
+            padding: 10px 24px;
             font-weight: 600;
             transition: all 0.3s ease;
             background: transparent;
         }
 
-        .btn-outline-green:hover {
-            border-color: #10b981;
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #34d399;
+        .btn-outline-green:hover { border-color: #10b981; background-color: rgba(16, 185, 129, 0.1); color: #34d399; }
+
+        .btn-donate {
+            background-color: #fbbf24;
+            color: #78350f;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
         }
+
+        .btn-donate:hover { background-color: #f59e0b; color: #451a03; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
 
         /* HERO SECTION */
         .hero-section { padding: 120px 5% 60px; }
@@ -171,42 +254,15 @@
             border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        .status-badge .dot {
-            width: 8px;
-            height: 8px;
-            background-color: #34d399;
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 0 10px #34d399;
-        }
-
-        .main-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.15;
-            color: #ffffff;
-            margin-bottom: 25px;
-        }
-
-        .text-gradient {
-            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            color: #94a3b8;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
-            max-width: 90%;
-        }
+        .status-badge .dot { width: 8px; height: 8px; background-color: #34d399; border-radius: 50%; margin-right: 10px; box-shadow: 0 0 10px #34d399; }
+        .main-title { font-size: 4rem; font-weight: 800; line-height: 1.15; color: #ffffff; margin-bottom: 25px; }
+        .text-gradient { background: linear-gradient(135deg, #34d399 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { color: #94a3b8; font-size: 1.15rem; line-height: 1.7; margin-bottom: 40px; max-width: 90%; }
 
         /* GLASSMORPHISM CARDS & MODALS */
         .glass-card, .glass-modal {
             background: rgba(10, 25, 15, 0.6);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 16px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
@@ -215,31 +271,13 @@
         }
 
         .glass-card { padding: 30px; }
-        
         .glass-card::before, .glass-modal::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #10b981, transparent);
-            opacity: 0.5;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, #10b981, transparent); opacity: 0.5;
         }
 
-        .system-font {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #cbd5e1;
-        }
-
-        .system-label {
-            color: #64748b;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            display: block;
-        }
+        .system-font { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; line-height: 1.8; color: #cbd5e1; }
+        .system-label { color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block; }
 
         /* MODAL SPECIFIC STYLES */
         .modal-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 30px; }
@@ -247,46 +285,52 @@
         .modal-footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 20px 30px; }
         .btn-close-white { filter: invert(1) grayscale(100%) brightness(200%); }
         
-        .changelog-section {
-            background: rgba(0,0,0,0.2);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.02);
-        }
-        .changelog-title {
-            color: #10b981;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .warning-box {
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-        }
+        .changelog-section { background: rgba(0,0,0,0.2); border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.02); }
+        .changelog-title { color: #10b981; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .warning-box { background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 15px 20px; border-radius: 0 8px 8px 0; }
         ul.custom-list { list-style-type: none; padding-left: 0; }
-        ul.custom-list li {
-            margin-bottom: 8px;
-            padding-left: 24px;
-            position: relative;
-            color: #cbd5e1;
-        }
-        ul.custom-list li::before {
-            content: '>';
-            color: #10b981;
-            position: absolute;
-            left: 0;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: bold;
-        }
+        ul.custom-list li { margin-bottom: 8px; padding-left: 24px; position: relative; color: #cbd5e1; }
+        ul.custom-list li::before { content: '>'; color: #10b981; position: absolute; left: 0; font-family: 'JetBrains Mono', monospace; font-weight: bold; }
     </style>
 </head>
 <body>
+
+    <!-- ELEMEN AUDIO BOOT, SHUTDOWN, & BACKGROUND MUSIC -->
+    <audio id="startup-audio" src="https://files.catbox.moe/m8ewdl.mp3" preload="auto"></audio>
+    <audio id="shutdown-audio" src="https://files.catbox.moe/xr0v4f.mp3" preload="auto"></audio>
+    <audio id="bg-music" src="https://files.catbox.moe/ck141f.mp3" preload="auto" loop></audio>
+
+    <!-- OOBE BOOT SCREEN DENGAN LOADING BAR -->
+    <div id="oobe-screen">
+        <div class="oobe-logo">🌿 Welcome to Nook<span>leaf</span></div>
+        <div class="system-font mb-2" style="color: #64748b;">Nook Core Architecture v1.0</div>
+        
+        <div id="interact-prompt" class="blinking-text">> PRESS ANY KEY OR CLICK TO INITIALIZE...</div>
+        
+        <div id="loading-container" class="loading-container">
+            <div class="progress-bar-box">
+                <div id="progress-fill" class="progress-bar-fill"></div>
+            </div>
+            <div id="loading-status" class="loading-text">Loading Kernel Modules [0%]</div>
+        </div>
+    </div>
+
+    <!-- OOBE SHUTDOWN SCREEN -->
+    <div id="shutdown-screen">
+        <div class="oobe-logo">👋 Bye bye!</div>
+        <div class="system-font mb-4" style="max-width: 650px; font-size: 1.05rem;">
+            <div style="color: #10b981; margin-bottom: 15px;">Shutting down Nook Core...</div>
+            <p>Terima kasih telah berkunjung ke situs resmi Nookleaf.</p>
+            
+            <div style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 15px; border-radius: 0 8px 8px 0; text-align: left; font-size: 0.9rem; margin-top: 20px;">
+                <span style="color: #fca5a5; font-weight: bold;">⚠️ REMINDER SEBELUM PERGI:</span><br>
+                <span style="color: #fecaca;">- Dilarang reupload ISO ke platform lain.<br>
+                - Dilarang keras membagikan ulang file menggunakan shortlink demi cuan.<br>
+                - Hargai selalu kerja keras para kreator proyek ini!</span>
+            </div>
+        </div>
+        <div class="shutdown-loader"></div>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -331,7 +375,7 @@
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="project-icon-box icon-teto">🥖</div>
                                     <div>
-                                        <div class="dropdown-title">TetoOS <span class="badge badge-comingsoon">COMING SOON</span></div>
+                                        <div class="dropdown-title">tetoOS <span class="badge badge-comingsoon">COMING SOON</span></div>
                                         <p class="dropdown-desc">The Ultimate Lightweight Experience</p>
                                     </div>
                                 </a>
@@ -339,31 +383,30 @@
                         </ul>
                     </li>
 
-                    <!-- TOMBOL CREDITS (MEMANGGIL MODAL) -->
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#creditsModal">Credits</a>
                     </li>
-
-                    <!-- LINK WEB KOMUNITAS VERCEL -->
                     <li class="nav-item">
-                        <a class="nav-link" href="https://tetoyapping.vercel.app/" target="_blank">Community</a>
+                        <a class="nav-link oobe-link" href="https://tetoyapping.vercel.app/" target="_blank">Community</a>
                     </li>
                 </ul>
             </div>
             
-            <!-- LINK WHATSAPP TETOYAPPING -->
-            <a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" target="_blank" class="btn btn-outline-green d-none d-lg-block">TetoYapping Chat</a>
+            <!-- BUTTONS DI KANAN (Memicu Shutdown) -->
+            <div class="d-flex gap-2 d-none d-lg-flex">
+                <a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" target="_blank" class="btn btn-outline-green oobe-link">TetoYapping Chat</a>
+                <a href="https://saweria.co/tetoyapping29312" target="_blank" class="btn btn-donate oobe-link">Donate ☕</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <div class="container hero-section">
         <div class="row align-items-center min-vh-100">
-            
             <!-- Kolom Kiri -->
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="status-badge">
-                    <span class="dot"></span> Teto OS 10 is Now Live
+                    <span class="dot"></span> tetoOS 10 is Now Live
                 </div>
                 
                 <h1 class="main-title">
@@ -376,8 +419,7 @@
                 </p>
                 
                 <div class="d-flex flex-wrap gap-3">
-                    <!-- LINK DOWNLOAD TETO OS -->
-                    <a href="https://sfl.gl/5qOjJu" target="_blank" class="btn btn-primary-green text-decoration-none">Download tetoOS</a>
+                    <a href="https://sfl.gl/5qOjJu" target="_blank" class="btn btn-primary-green text-decoration-none oobe-link">Download tetoOS</a>
                     <button type="button" class="btn btn-outline-green" data-bs-toggle="modal" data-bs-target="#changelogModal">
                         View Changelog
                     </button>
@@ -440,7 +482,6 @@
 
                     <div class="changelog-section">
                         <div class="changelog-title">🛠️ Tim Pengembang</div>
-                        <p style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 10px;">Proyek ini terwujud berkat dedikasi dari para kreator berikut:</p>
                         <ul class="custom-list system-font" style="font-size: 0.9rem;">
                             <li><strong>Lead Modder:</strong> Vincent, Hirolizia, Holymagi</li>
                             <li><strong>Ilustrator:</strong> Dwika Rahma Putri (Logo)</li>
@@ -450,23 +491,12 @@
                         </ul>
                     </div>
 
-                    <div class="changelog-section">
-                        <div class="changelog-title">✨ Fitur Utama</div>
-                        <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
-                            <li class="mb-2">✅ <strong>Custom Startup Sound:</strong> Pengalaman audio eksklusif saat pertama kali menyalakan PC.</li>
-                            <li class="mb-2">✅ <strong>Original Artwork:</strong> Wallpaper dan aset visual yang tidak akan ditemukan di tempat lain.</li>
-                            <li class="mb-2">✅ <strong>Themed Icons & Skin:</strong> Perubahan menyeluruh pada ikon sistem agar selaras dengan tema.</li>
-                            <li class="mb-2">✅ <strong>Lightweight Performance:</strong> Optimasi sistem agar tetap ringan meski menggunakan tema kustom.</li>
-                        </ul>
-                    </div>
-
                     <div class="warning-box mb-4">
                         <div class="fw-bold mb-2" style="color: #fca5a5;">📜 Catatan Lisensi</div>
                         <ul class="mb-0 ps-3" style="color: #fecaca; font-size: 0.9rem;">
                             <li><strong>DILARANG KERAS</strong> mengambil, mengunggah ulang, atau mendistribusikan file ISO ini di platform lain tanpa izin tertulis dari pihak Modder (Nookleaf).</li>
                             <li>Seluruh aset visual (Wallpaper/Ilustrasi) dan audio adalah hak cipta kreator.</li>
-                            <li>Mod ini disediakan untuk penggunaan pribadi, bukan untuk diperjualbelikan dan <strong>tidak boleh membagikan ulang file menggunakan shortlink pribadi demi keuntungan (cuan)</strong>. Seluruh link distribusi harus menggunakan shortlink resmi dari Modder.</li>
-                            <li class="mt-3 text-decoration-underline text-center d-block">Segala bentuk pelanggaran distribusi tanpa izin akan ditindaklanjuti. Hargailah karya para kreator.</li>
+                            <li>Mod ini disediakan untuk penggunaan pribadi, bukan untuk diperjualbelikan dan <strong>tidak boleh membagikan ulang file menggunakan shortlink pribadi demi keuntungan (cuan)</strong>.</li>
                         </ul>
                     </div>
 
@@ -491,7 +521,7 @@
                 <div class="modal-body system-font" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                     
                     <p style="color: #cbd5e1; line-height: 1.7;">
-                        Halo sobat Nookleaf! Akhirnya yang ditunggu-tunggu tiba. tetoOS versi awal sudah siap untuk kalian coba! Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto 🥖. Cocok banget buat kalian yang punya spek PC/Laptop "kentang" atau yang ingin performa gaming tanpa gangguan bloatware!
+                        Halo sobat Nookleaf! Akhirnya yang ditunggu-tunggu tiba. tetoOS versi awal sudah siap untuk kalian coba! Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto 🥖. 
                     </p>
 
                     <div class="changelog-section">
@@ -499,10 +529,7 @@
                         <ul class="custom-list system-font" style="font-size: 0.9rem;">
                             <li><strong>File:</strong> tetoOS-early_ver-08513M26_prep.iso</li>
                             <li><strong>Edition:</strong> SUPERLITE</li>
-                            <li><strong>State:</strong> Early Version (Prep)</li>
-                            <li><strong>Base:</strong> Windows 10 Enterprise LTSC IoT 22H2</li>
                             <li><strong>Compiled:</strong> March 03, 2026</li>
-                            <li><strong>MD5:</strong> 3C33150E210056DB9BDFBA19907AFC0D</li>
                         </ul>
                     </div>
 
@@ -511,33 +538,8 @@
                         <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
                             <li class="mb-2">✅ <strong>Teto Aesthetic:</strong> Kursor, wallpaper, dan skema suara eksklusif Kasane Teto.</li>
                             <li class="mb-2">✅ <strong>Performance Boost:</strong> Debloated, Compact NTFS Compression, & Custom Power Profile.</li>
-                            <li class="mb-2">✅ <strong>New UI:</strong> Taskbar ala 8.x dan rebranding total brand Windows.</li>
-                            <li class="mb-2">✅ <strong>Stay Stable:</strong> Windows Update Permanent Pause Mode (Anti-update tiba-tiba!).</li>
-                            <li class="mb-2">✅ <strong>Low Footprint:</strong> Sangat ringan, ramah untuk perangkat low-mid spec.</li>
                         </ul>
                     </div>
-
-                    <div class="warning-box mb-4">
-                        <div class="fw-bold mb-2" style="color: #fca5a5;">⚠️ PERHATIAN (ISO RULES):</div>
-                        <ul class="mb-0 ps-3" style="color: #fecaca; font-size: 0.9rem;">
-                            <li><strong>Dilarang Reupload!</strong> Gunakan link resmi untuk men-support project ini.</li>
-                            <li><strong>Dilarang Shortlink Cuan!</strong> Jangan mengambil untung dari hasil reupload file kami.</li>
-                            <li><strong>No Modifikasi!</strong> Dilarang membongkar/modifikasi ulang ISO ini tanpa izin.</li>
-                            <li><strong>Resiko Sendiri:</strong> Gunakan di Virtual Machine terlebih dahulu jika ragu. Use at your own risk!</li>
-                        </ul>
-                    </div>
-
-                    <div class="changelog-section mb-0">
-                        <div class="changelog-title">🤝 CREDITS & THANKS TO</div>
-                        <ul class="custom-list system-font" style="font-size: 0.9rem;">
-                            <li><strong>OS Base:</strong> elzeXD</li>
-                            <li><strong>Lead Modder:</strong> Holymagi & Hirolizia</li>
-                            <li><strong>Illustrators:</strong> Dwika Rahma Ghania Putri (Logo), Hirolizia (OS Assets)</li>
-                            <li><strong>Stock Wallpaper:</strong> AES™</li>
-                            <li><strong>Sound Schemes:</strong> DavidMounder9598</li>
-                        </ul>
-                    </div>
-
                 </div>
                 <div class="modal-footer justify-content-between">
                     <span class="text-muted" style="font-size: 0.85rem;">Join TetoYapping community for discussions!</span>
@@ -547,7 +549,101 @@
         </div>
     </div>
 
+    <!-- SCRIPT OOBE (BOOTING LOADING BAR, BGM, & SHUTDOWN) -->
+    <script>
+        // === LOGIKA BOOT SCREEN LENGKAP DENGAN LOADING BAR, BGM & VOLUME 100% ===
+        let isBooting = false;
+        
+        function startBootSequence() {
+            if (isBooting) return; 
+            isBooting = true;
+
+            document.getElementById('interact-prompt').style.display = 'none';
+            document.getElementById('loading-container').style.display = 'flex';
+
+            let progress = 0;
+            const progressFill = document.getElementById('progress-fill');
+            const statusText = document.getElementById('loading-status');
+            
+            const loadingInterval = setInterval(() => {
+                progress += Math.floor(Math.random() * 10) + 2; 
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    
+                    statusText.innerHTML = "System Ready [100%]";
+                    statusText.style.color = "#34d399";
+                    
+                    // === AUDIO STARTUP DIPAKSA VOLUME 100% (1.0) ===
+                    var bootAudio = document.getElementById('startup-audio');
+                    bootAudio.volume = 1.0; 
+                    bootAudio.play().catch(err => console.log("Audio Boot gagal:", err));
+                    
+                    setTimeout(() => {
+                        var bgMusic = document.getElementById('bg-music');
+                        bgMusic.volume = 0.3; 
+                        bgMusic.play().catch(e => console.log("BGM gagal diputar:", e));
+                    }, 2000); 
+                    
+                    setTimeout(() => {
+                        var oobeScreen = document.getElementById('oobe-screen');
+                        oobeScreen.style.opacity = '0';
+                        
+                        setTimeout(function() {
+                            oobeScreen.style.visibility = 'hidden';
+                            document.body.style.overflowY = 'auto'; 
+                        }, 1500);
+                    }, 500);
+                } else {
+                    statusText.innerHTML = `Loading Kernel Modules [${progress}%]`;
+                }
+                
+                progressFill.style.width = progress + '%';
+            }, 150);
+        }
+
+        document.body.addEventListener('click', startBootSequence, { once: true });
+        document.body.addEventListener('keydown', startBootSequence, { once: true });
+
+
+        // === LOGIKA SHUTDOWN SCREEN UNTUK LINK EKSTERNAL ===
+        const oobeLinks = document.querySelectorAll('.oobe-link');
+        const shutdownScreen = document.getElementById('shutdown-screen');
+        const shutdownAudio = document.getElementById('shutdown-audio');
+        const bgMusic = document.getElementById('bg-music');
+
+        oobeLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                const targetUrl = this.href;
+                const isNewTab = this.target === '_blank';
+
+                bgMusic.pause();
+
+                shutdownAudio.play().catch(err => console.log("Audio Shutdown gagal:", err));
+
+                document.body.style.overflowY = 'hidden';
+                shutdownScreen.style.visibility = 'visible';
+                shutdownScreen.style.opacity = '1';
+
+                setTimeout(() => {
+                    if (isNewTab) {
+                        window.open(targetUrl, '_blank');
+                        
+                        shutdownScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            shutdownScreen.style.visibility = 'hidden';
+                            document.body.style.overflowY = 'auto';
+                            bgMusic.play().catch(e => console.log("BGM lanjut main gagal:", e));
+                        }, 1000);
+                    } else {
+                        window.location.href = targetUrl;
+                    }
+                }, 3500); 
+            });
+        });
+    </script>
 </body>
 </html>
-
 
