@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -350,7 +349,6 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#docsModal">Docs</a></li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#creditsModal">Credits</a></li>
-                    <!-- Nav Link Community diubah menjadi autoscroll mulus ke bawah -->
                     <li class="nav-item"><a class="nav-link" onclick="document.getElementById('community-section').scrollIntoView({behavior: 'smooth'})">Community</a></li>
                 </ul>
             </div>
@@ -500,6 +498,14 @@
                         <p style="color: #a78bfa; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Sound Designer</p>
                         <p>Audio specialist creating immersive sound effects and audio schemes.</p>
                     </div>
+                    
+                    <!-- NEW DEVELOPMENT TEAM MEMBER: MARBOT -->
+                    <div class="dev-card">
+                        <img src="https://avatars.githubusercontent.com/u/81670647" alt="just-shadyumbrella" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <h4><a href="https://github.com/just-shadyumbrella" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='inherit'">just-shadyumbrella</a></h4>
+                        <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Second Hand</p>
+                        <p>Membantu dalam pengembangan proyek dan memastikan kelancaran alur kerja modifikasi sistem.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -526,7 +532,7 @@
             </div>
         </div>
 
-        <!-- NEW: COMMUNITY BERANDA SECTION -->
+        <!-- COMMUNITY BERANDA SECTION -->
         <div id="community-section" style="padding: 100px 5%; background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 70%); border-top: 1px solid rgba(255,255,255,0.05);">
             <div class="container text-center">
                 <span class="system-label" style="letter-spacing: 2px; font-weight: 700; color: #64748b; margin-bottom: 20px; display: block;">JOIN OUR COMMUNITY</span>
@@ -535,7 +541,7 @@
 
                 <div class="row justify-content-center mt-5" style="max-width: 800px; margin: 0 auto; gap: 20px;">
                     <div class="col-md-5 p-0">
-                        <!-- Link Discord (Ganti # jika ada) -->
+                        <!-- Link Discord -->
                         <a href="#" target="_blank" class="btn btn-community btn-discord w-100 oobe-link">
                             Discord Server
                         </a>
@@ -546,7 +552,7 @@
                         </a>
                     </div>
                     <div class="col-md-5 p-0">
-                        <!-- Link FB Nookleaf (Ganti # jika ada) -->
+                        <!-- Link FB Nookleaf -->
                         <a href="#" target="_blank" class="btn btn-community btn-fb w-100 oobe-link">
                             Facebook Nookleaf
                         </a>
@@ -560,7 +566,7 @@
             </div>
         </div>
 
-        <!-- NEW: PROFESSIONAL FOOTER -->
+        <!-- PROFESSIONAL FOOTER -->
         <footer class="footer-nookleaf">
             <div class="container">
                 <div class="row mb-5">
@@ -638,7 +644,7 @@
             }
         }
 
-        // === LOGIKA TOGGLE VIEW BERANDA ===
+        // === LOGIKA TOGGLE VIEW BERANDA (DENGAN UTK TRANSISI BACKROUND IJO KE MERAH) ===
         function toggleView(viewName) {
             const body = document.body;
             
