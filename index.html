@@ -192,6 +192,11 @@
         body.light-mode .text-gradient-red { background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
         body.light-mode .glass-card-red { border: 1px solid rgba(244, 63, 94, 0.3) !important; }
         body.light-mode .glass-card-red h4 { color: #e11d48 !important; }
+        
+        /* Light Mode Khusus Privacy Policy Warning Box */
+        body.light-mode .warning-box-privacy { background: rgba(245, 158, 11, 0.1) !important; border-left-color: #f59e0b !important; }
+        body.light-mode .warning-box-privacy .fw-bold { color: #d97706 !important; }
+        body.light-mode .warning-box-privacy p, body.light-mode .warning-box-privacy ol { color: #92400e !important; }
 
         /* RICKROLL CONTAINER */
         #rickroll-container { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999999; background: #000; }
@@ -499,12 +504,26 @@
                         <p>Audio specialist creating immersive sound effects and audio schemes.</p>
                     </div>
                     
-                    <!-- NEW DEVELOPMENT TEAM MEMBER: MARBOT -->
                     <div class="dev-card">
                         <img src="https://avatars.githubusercontent.com/u/81670647" alt="just-shadyumbrella" style="border-color: rgba(16, 185, 129, 0.3);">
                         <h4><a href="https://github.com/just-shadyumbrella" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='inherit'">just-shadyumbrella</a></h4>
-                        <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Second Hand</p>
+                        <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Vice Modder</p>
                         <p>Membantu dalam pengembangan proyek dan memastikan kelancaran alur kerja modifikasi sistem.</p>
+                    </div>
+
+                    <!-- NEW DEVELOPMENT TEAM MEMBERS -->
+                    <div class="dev-card">
+                        <img src="https://files.catbox.moe/94zjvg.jpg" alt="Arief Friedrich Hegel" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <h4><a href="https://my-article.vercel.app/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='inherit'">Arief Friedrich Hegel</a></h4>
+                        <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Tester Windows</p>
+                        <p>Memastikan stabilitas sistem dan kompatibilitas aplikasi melalui pengujian menyeluruh.</p>
+                    </div>
+                    
+                    <div class="dev-card">
+                        <img src="https://files.catbox.moe/7lmn8t.jpg" alt="Bolu Isi Nasicumi Pakkris" style="border-color: rgba(16, 185, 129, 0.3);">
+                        <h4 style="color: #fff; font-weight: 700; font-size: 1.2rem; margin-bottom: 8px;">Bolu Isi Nasicumi Pakkris</h4>
+                        <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Wallpaper Desainer, Tester Windows</p>
+                        <p>Berperan ganda dalam merancang aset wallpaper memukau serta melakukan pengujian stabilitas sistem.</p>
                     </div>
                 </div>
             </div>
@@ -541,19 +560,17 @@
 
                 <div class="row justify-content-center mt-5" style="max-width: 800px; margin: 0 auto; gap: 20px;">
                     <div class="col-md-5 p-0">
-                        <!-- Link Discord -->
-                        <a href="#" target="_blank" class="btn btn-community btn-discord w-100 oobe-link">
+                        <a href="https://discord.gg/3hXCNdHQ2" target="_blank" class="btn btn-community btn-discord w-100 oobe-link">
                             Discord Server
                         </a>
                     </div>
                     <div class="col-md-5 p-0">
-                        <a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" target="_blank" class="btn btn-community btn-wa w-100 oobe-link">
+                        <a href="https://chat.whatsapp.com/LsL4iUHmES3EbYVkcT2xUp" target="_blank" class="btn btn-community btn-wa w-100 oobe-link">
                             GC WhatsApp
                         </a>
                     </div>
                     <div class="col-md-5 p-0">
-                        <!-- Link FB Nookleaf -->
-                        <a href="#" target="_blank" class="btn btn-community btn-fb w-100 oobe-link">
+                        <a href="https://web.facebook.com/profile.php?id=100094865010559" target="_blank" class="btn btn-community btn-fb w-100 oobe-link">
                             Facebook Nookleaf
                         </a>
                     </div>
@@ -590,21 +607,87 @@
                     <div class="col-lg-3 col-6">
                         <h6 class="footer-heading">COMMUNITY</h6>
                         <ul class="list-unstyled" style="line-height: 2.2; font-size: 0.95rem;">
-                            <li><a href="#" class="footer-link">Discord</a></li>
-                            <li><a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" class="footer-link">GC WhatsApp</a></li>
-                            <li><a href="#" class="footer-link">Facebook</a></li>
+                            <li><a href="https://discord.gg/3hXCNdHQ2" class="footer-link">Discord</a></li>
+                            <li><a href="https://chat.whatsapp.com/LsL4iUHmES3EbYVkcT2xUp" class="footer-link">GC WhatsApp</a></li>
+                            <li><a href="https://web.facebook.com/profile.php?id=100094865010559" class="footer-link">Facebook</a></li>
                             <li><a href="https://tetoyapping.vercel.app/" class="footer-link">TetoYapping</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center" style="border-top: 1px solid rgba(16,185,129,0.1); padding-top: 30px;">
-                    <p class="footer-text" style="color: #64748b; font-size: 0.9rem; margin: 0;">© 2026 <strong style="color: #10b981;">Nookleaf</strong> — This site is a work in progress and subject to change.</p>
-                    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; transition: 0.3s; margin-top: 15px; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">↑ Back to top</button>
+                    <div class="footer-text text-center text-md-start mb-3 mb-md-0">
+                        <p style="color: #64748b; font-size: 0.9rem; margin: 0; margin-bottom: 5px;">© 2026 <strong style="color: #10b981;">Nookleaf</strong> — This site is a work in progress and subject to change.</p>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" style="color: #94a3b8; font-size: 0.85rem; transition: 0.3s; text-decoration: underline;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='#94a3b8'">Privacy Policy & Terms of Service</a>
+                    </div>
+                    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; transition: 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">↑ Back to top</button>
                 </div>
             </div>
         </footer>
 
     </div> <!-- END SHARED BOTTOM SECTIONS -->
+
+    <!-- Modal (Privacy Policy) -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content glass-modal text-light border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">📜 KEBIJAKAN PRIVASI & KETENTUAN LAYANAN</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body system-font">
+                    <p style="color: #10b981; font-weight: bold; margin-bottom: 5px;">NOOKLEAF PROJECT (tetoOS)</p>
+                    <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 20px;">Pembaruan Terakhir: 18 Juli 2026</p>
+                    <p style="color: #cbd5e1; line-height: 1.7;">Dengan mengunduh, menginstal, dan menggunakan <strong>tetoOS</strong> maupun produk lain dari Nookleaf Project, Anda secara otomatis menyetujui seluruh kebijakan privasi dan ketentuan layanan di bawah ini.</p>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">🔒 BAGIAN 1: KEBIJAKAN PRIVASI (PRIVACY POLICY)</div>
+                        <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
+                            <li class="mb-3"><strong>1. Keamanan Data Pengguna:</strong> Nookleaf Project berkomitmen penuh menjaga privasi Anda. Kami <strong>tidak pernah</strong> menyisipkan <em>malware</em>, <em>keylogger</em>, atau skrip apa pun yang bertujuan untuk mengumpulkan, melacak, atau mencuri data pribadi, dokumen, <em>password</em>, maupun riwayat <em>browsing</em> Anda.</li>
+                            <li class="mb-3"><strong>2. Telemetri dan Pelacakan:</strong> tetoOS dirancang untuk mengutamakan privasi dan performa. Sebagian besar fitur pelacakan bawaan (telemetri) telah dimatikan atau dihapus untuk memastikan sistem berjalan sangat ringan dan data Anda tetap berada di perangkat Anda sendiri.</li>
+                            <li class="mb-0"><strong>3. Penggunaan Laporan (Bug Report):</strong> Jika Anda melaporkan <em>error</em> atau <em>bug</em> kepada tim CS kami di grup resmi, informasi teknis yang Anda berikan (seperti spesifikasi PC dan <em>screenshot error</em>) murni hanya akan digunakan oleh tim <em>developer</em> untuk keperluan perbaikan (<em>troubleshooting</em>) pada pembaruan (<em>update</em>) OS selanjutnya.</li>
+                        </ul>
+                    </div>
+
+                    <div class="changelog-section">
+                        <div class="changelog-title">⚖️ BAGIAN 2: KETENTUAN KOMERSIAL & PENGGUNAAN LISENSI</div>
+                        <p style="color: #cbd5e1; line-height: 1.7; margin-bottom: 15px;">tetoOS didistribusikan secara <strong>GRATIS (Freeware)</strong> kepada komunitas. Oleh karena itu, Nookleaf Project menetapkan aturan tegas terkait komersialisasi produk kami:</p>
+                        
+                        <p style="color: #34d399; font-weight: bold; margin-bottom: 5px;">✅ YANG DIPERBOLEHKAN (Jasa Install Ulang):</p>
+                        <p style="margin-bottom: 15px;">Bagi teknisi komputer, Anda <strong>DIPERBOLEHKAN</strong> menggunakan tetoOS untuk melayani pelanggan. Biaya yang Anda tarik dari pelanggan harus murni sebagai <strong>BIAYA JASA/TENAGA</strong> atas waktu, keahlian instalasi, pengaturan sistem, dan pemasangan <em>driver</em>.</p>
+                        
+                        <p style="color: #fb7185; font-weight: bold; margin-bottom: 5px;">❌ YANG DILARANG KERAS (Penjualan Produk/File):</p>
+                        <p style="margin-bottom: 10px;">Anda <strong>DILARANG KERAS</strong> memperjualbelikan karya intelektual Nookleaf Project dalam bentuk apa pun. Pelanggaran mencakup:</p>
+                        <ul class="custom-list mb-3">
+                            <li><strong>Menjual File ISO:</strong> Menjual <em>link download</em> atau <em>file</em> mentahan tetoOS.</li>
+                            <li><strong>Menjual Flashdisk Bootable:</strong> Memasukkan OS kami ke dalam <em>flashdisk</em> / media penyimpanan fisik dan menjualnya sebagai produk dagangan dengan embel-embel OS racikan premium.</li>
+                        </ul>
+                        
+                        <div class="warning-box warning-box-privacy" style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b;">
+                            <div class="fw-bold mb-2" style="color: #fbbf24;">⚠️ Sanksi Pelanggaran Komersial:</div>
+                            <p style="color: #fde68a; font-size: 0.9rem; margin-bottom: 5px;">Jika kedapatan ada pihak yang menjual <em>file</em> ISO atau <em>flashdisk bootable</em> tetoOS, Nookleaf Project akan mengambil tindakan tegas berupa:</p>
+                            <ol style="color: #fde68a; font-size: 0.9rem; margin-bottom: 0; padding-left: 20px;">
+                                <li><em>Takedown</em> paksa (pelaporan penghapusan konten/toko kepada pihak <em>platform</em>).</li>
+                                <li>Tuntutan denda ganti rugi atas pelanggaran karya komunitas.</li>
+                                <li><em>Blacklist</em> permanen dari seluruh ekosistem dan grup Nookleaf.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="changelog-section mb-0">
+                        <div class="changelog-title">🛡️ BAGIAN 3: DISCLAIMER & PELEPASAN TANGGUNG JAWAB</div>
+                        <ul class="list-unstyled text-light" style="font-size: 0.95rem;">
+                            <li class="mb-3"><strong>1. Risiko Modifikasi (<em>Use at Your Own Risk</em>):</strong> tetoOS adalah sistem operasi hasil modifikasi (<em>custom OS</em>). Dengan menggunakannya, Anda memahami dan menanggung sendiri segala risiko yang mungkin terjadi. Nookleaf Project tidak bertanggung jawab atas kehilangan data, kerusakan <em>hardware</em>, atau <em>error</em> sistem akibat kesalahan prosedur instalasi.</li>
+                            <li class="mb-0"><strong>2. Dukungan Pihak Ketiga:</strong> Kami tidak bertanggung jawab atas <em>file</em> tetoOS yang diunduh dari luar jalur resmi (seperti <em>link reupload</em> dari pihak ketiga). Selalu gunakan <em>link</em> yang disediakan langsung di dalam grup resmi Nookleaf untuk menghindari file yang sudah disusupi virus.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <span class="text-muted" style="font-size: 0.85rem;">Terima kasih telah mematuhi aturan Nookleaf Project.</span>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Docs (WIP popup) -->
     <div class="modal fade" id="docsModal" tabindex="-1">
