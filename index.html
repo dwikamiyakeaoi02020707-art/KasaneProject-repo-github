@@ -105,7 +105,7 @@
         
         .teto-mascot { max-height: 80vh; filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.2)); object-fit: contain; transform: scale(1.1); transition: 0.3s; }
 
-        /* === PERBAIKAN LAYOUT HERO === */
+        /* === PERBAIKAN LAYOUT HERO AGAR TENGAH DI SEMUA DEVICE === */
         .hero-wrapper { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; padding-bottom: 60px; }
         
         .status-badge { display: inline-flex; align-items: center; background: rgba(16, 185, 129, 0.1); color: #34d399; padding: 8px 18px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; margin-bottom: 25px; border: 1px solid rgba(16, 185, 129, 0.2); transition: 0.3s; }
@@ -212,7 +212,8 @@
             .navbar { padding: 1rem 3%; }
             .navbar-brand { font-size: 1.1rem; }
             .nav-link { margin: 0 5px; font-size: 0.9rem; }
-            .hero-wrapper { padding: 100px 4% 40px; }
+            /* Perbaikan padding di Tablet supaya konten terdorong ke bawah Navbar */
+            .hero-wrapper { padding-top: 130px; padding-bottom: 60px; min-height: 100vh; }
             .main-title { font-size: 2.2rem; margin-bottom: 20px; }
             .hero-desc { font-size: 0.95rem; max-width: 100%; margin-bottom: 30px; }
             .btn-primary-green, .btn-outline-green, .btn-primary-red, .btn-outline-red, .btn-donate { padding: 12px 20px; font-size: 0.9rem; width: 100%; margin-bottom: 10px; }
@@ -229,7 +230,8 @@
         }
 
         @media (max-width: 480px) {
-            .hero-wrapper { padding: 100px 3% 30px; min-height: auto; }
+            /* PERBAIKAN BUG MOBILE: Memaksa min-height 100vh dan menambah padding atas yang besar */
+            .hero-wrapper { padding-top: 140px; padding-bottom: 50px; min-height: 100vh; }
             .main-title { font-size: 1.8rem; line-height: 1.2; margin-bottom: 15px; }
             .text-gradient, .text-gradient-red { display: block; }
             .hero-desc { font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px; }
@@ -358,7 +360,7 @@
                 </ul>
             </div>
             <div class="d-flex gap-2 d-none d-lg-flex">
-                <a href="https://chat.whatsapp.com/CWIT9rEQ29D0UViL6B4Kkq" target="_blank" class="btn btn-outline-green oobe-link">TetoYapping Chat</a>
+                <a href="https://chat.whatsapp.com/LsL4iUHmES3EbYVkcT2xUp" target="_blank" class="btn btn-outline-green oobe-link">TetoYapping Chat</a>
                 <a href="https://saweria.co/tetoyapping29312/toko-top-up" target="_blank" class="btn btn-donate oobe-link">Top-up & Support ☕</a>
                 <button class="btn btn-outline-green d-flex align-items-center justify-content-center" onclick="toggleTheme()" id="theme-btn" style="padding: 8px 15px; border-radius: 8px;">☀️</button>
             </div>
@@ -511,7 +513,6 @@
                         <p>Membantu dalam pengembangan proyek dan memastikan kelancaran alur kerja modifikasi sistem.</p>
                     </div>
 
-                    <!-- NEW DEVELOPMENT TEAM MEMBERS -->
                     <div class="dev-card">
                         <img src="https://files.catbox.moe/94zjvg.jpg" alt="Arief Friedrich Hegel" style="border-color: rgba(16, 185, 129, 0.3);">
                         <h4><a href="https://my-article.vercel.app/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#10b981'" onmouseout="this.style.color='inherit'">Arief Friedrich Hegel</a></h4>
