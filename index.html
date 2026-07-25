@@ -294,9 +294,14 @@
         <video id="rickroll-video" src="" loop preload="auto"></video>
     </div>
 
+    <!-- ELEMEN AUDIO -->
     <audio id="startup-audio" src="https://files.catbox.moe/m8ewdl.mp3" preload="auto"></audio>
     <audio id="shutdown-audio" src="https://files.catbox.moe/xr0v4f.mp3" preload="auto"></audio>
-    <audio id="bg-music" src="https://files.catbox.moe/ck141f.mp3" preload="auto" loop></audio>
+    <audio id="nookleaf-bg-music" src="https://files.catbox.moe/ck141f.mp3" preload="auto" loop></audio>
+    
+    <!-- AUDIO BARU KHUSUS TETO -->
+    <audio id="teto-startup-voice" src="https://files.catbox.moe/zm3wud.mp3" preload="auto"></audio>
+    <audio id="teto-bg-music" src="https://files.catbox.moe/t82l3n.mp3" preload="auto" loop></audio>
 
     <!-- OOBE BOOT SCREEN -->
     <div id="oobe-screen">
@@ -423,8 +428,10 @@
                     <p class="hero-desc">Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto. Cocok untuk PC/Laptop "kentang" atau yang ingin performa gaming tanpa gangguan bloatware.</p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="https://linkdownload-one.vercel.app/" target="_blank" class="btn btn-primary-red text-decoration-none oobe-link">Download tetoOS</a>
+                        
                         <!-- TOMBOL BARU: CBT ACCESS -->
                         <button type="button" class="btn btn-cbt" data-bs-toggle="modal" data-bs-target="#cbtModal">CBT Access 🔒</button>
+                        
                         <a href="https://sfl.gl/9a4OHgv" target="_blank" class="btn btn-outline-red text-decoration-none oobe-link">Arsip tetoOS</a>
                         <button type="button" class="btn btn-outline-red" data-bs-toggle="modal" data-bs-target="#changelogModal">View Changelog</button>
                     </div>
@@ -481,8 +488,7 @@
                         <img src="https://files.catbox.moe/yrvhcc.jpg" alt="Hirolizia" style="border-color: rgba(56, 189, 248, 0.3);">
                         <h4><a href="https://hirumihiro.blogspot.com/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='inherit'">Hirolizia</a></h4>
                         <p style="color: #38bdf8; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Designer & Modder</p>
-                        <p>Creative mind behind UI/UX design and aesthetic implementation across projects.</p>
-                    </div>
+                        <p>Creative mind behind UI/UX design and aesthetic implementation across projects.</    div>
                     <div class="dev-card">
                         <img src="https://files.catbox.moe/chedlr.jpg" alt="Holymagi" style="border-color: rgba(244, 63, 94, 0.3);">
                         <h4><a href="https://ymgitech.vercel.app/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#f43f5e'" onmouseout="this.style.color='inherit'">Holymagi</a></h4>
@@ -748,6 +754,17 @@
     <div class="modal fade" id="changelogModal" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content glass-modal text-light border-0"><div class="modal-header"><h5 class="modal-title fw-bold">🖥️ [RELEASE] tetoOS Early Version</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body system-font"><p style="color: #cbd5e1; line-height: 1.7;">Halo sobat Nookleaf! Akhirnya yang ditunggu-tunggu tiba. tetoOS versi awal sudah siap untuk kalian coba! Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto 🥖. Cocok banget buat kalian yang punya spek PC/Laptop "kentang" atau yang ingin performa gaming tanpa gangguan bloatware!</p><div class="changelog-section"><div class="changelog-title">📊 DETAIL INFORMASI</div><ul class="custom-list"><li><strong>File:</strong> tetoOS-early_ver-08513M26_prep.iso</li><li><strong>Edition:</strong> SUPERLITE</li><li><strong>State:</strong> Early Version (Prep)</li><li><strong>Base:</strong> Windows 10 Enterprise LTSC IoT 22H2</li><li><strong>Compiled:</strong> March 03, 2026</li><li><strong>MD5:</strong> 3C33150E210056DB9BDFBA19907AFC0D</li></ul></div><div class="changelog-section"><div class="changelog-title">✨ FITUR UNGGULAN</div><ul class="list-unstyled text-light" style="font-size: 0.95rem;"><li class="mb-2">✅ <strong>Teto Aesthetic:</strong> Kursor, wallpaper, dan skema suara eksklusif Kasane Teto.</li><li class="mb-2">✅ <strong>Performance Boost:</strong> Debloated, Compact NTFS Compression, & Custom Power Profile.</li><li class="mb-2">✅ <strong>New UI:</strong> Taskbar ala 8.x dan rebranding total brand Windows.</li><li class="mb-2">✅ <strong>Stay Stable:</strong> Windows Update Permanent Pause Mode (Anti-update tiba-tiba!).</li><li class="mb-2">✅ <strong>Low Footprint:</strong> Sangat ringan, ramah untuk perangkat low-mid spec.</li></ul></div><div class="changelog-section"><div class="changelog-title">🔗 LINK DOWNLOAD</div><ul class="custom-list"><li><a href="https://nookleaf.vercel.app/" target="_blank" class="oobe-link" style="color: #38bdf8; text-decoration: none;">https://nookleaf.vercel.app/</a></li><li style="color: #fbbf24;">Pilih KasaneProject</li></ul></div><div class="warning-box mb-4"><div class="fw-bold mb-2" style="color: #fca5a5;">⚠️ PERHATIAN (ISO RULES):</div><ul class="mb-0 ps-3" style="color: #fecaca; font-size: 0.9rem;"><li><strong>Dilarang Reupload!</strong> Gunakan link resmi untuk men-support project ini.</li><li><strong>Dilarang Shortlink Cuan!</strong> Jangan mengambil untung dari hasil reupload file kami.</li><li><strong>No Modifikasi!</strong> Dilarang membongkar/modifikasi ulang ISO ini tanpa izin.</li><li><strong>Resiko Sendiri:</strong> Gunakan di Virtual Machine terlebih dahulu jika ragu. Use at your own risk!</li></ul></div><div class="changelog-section mb-0"><div class="changelog-title">🤝 CREDITS & THANKS TO</div><ul class="custom-list"><li><strong>OS Base:</strong> elzeXD</li><li><strong>Lead Modder:</strong> Holymagi & Hirolizia</li><li><strong>Illustrators:</strong> Dwika Rahma Ghania Putri (Logo), Hirolizia (OS Assets)</li><li><strong>Stock Wallpaper:</strong> AES™</li><li><strong>Sound Schemes:</strong> DavidMounder9598</li></ul></div></div><div class="modal-footer justify-content-between"><span class="text-muted" style="font-size: 0.85rem;">Bergabunglah dengan komunitas kami di TetoYapping untuk diskusi lebih lanjut!</span><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button></div></div></div></div>
 
     <script>
+        // === DEFINISI ELEMEN AUDIO ===
+        const startupAudio = document.getElementById('startup-audio');
+        const shutdownAudio = document.getElementById('shutdown-audio');
+        const nookleafBgMusic = document.getElementById('nookleaf-bg-music');
+        const rickrollVideo = document.getElementById('rickroll-video');
+        const rickrollContainer = document.getElementById('rickroll-container');
+
+        // ELEMEN AUDIO BARU TETO
+        const tetoStartupVoice = document.getElementById('teto-startup-voice');
+        const tetoBgMusic = document.getElementById('teto-bg-music');
+
         // === LOGIKA TEMA (DARK/LIGHT MODE) ===
         function toggleTheme() {
             const body = document.body;
@@ -761,24 +778,54 @@
             }
         }
 
-        // === LOGIKA TOGGLE VIEW BERANDA (DENGAN UTK TRANSISI BACKROUND IJO KE MERAH) ===
+        // === LOGIKA TOGGLE VIEW BERANDA (DENGAN TRANSISI AUDIO) ===
         function toggleView(viewName) {
             const body = document.body;
             
             if (viewName === 'home') {
+                // KEMBALI KE HOME (GREEN THEME)
                 document.getElementById('home-view').style.display = 'block';
                 document.getElementById('teto-view').style.display = 'none';
                 body.classList.remove('teto-theme');
+                
+                // STOP SEMUA AUDIO TETO
+                tetoStartupVoice.pause();
+                tetoStartupVoice.currentTime = 0;
+                tetoBgMusic.pause();
+                tetoBgMusic.currentTime = 0;
+                
+                // RESUME MUSIK NOOKLEAF
+                nookleafBgMusic.volume = 0.3;
+                nookleafBgMusic.play().catch(e => console.log(e));
+
             } else if (viewName === 'teto') {
+                // MASUK KE TETO OS (RED THEME)
                 document.getElementById('home-view').style.display = 'none';
                 document.getElementById('teto-view').style.display = 'block';
                 body.classList.add('teto-theme');
+                
+                // STOP TOTAL MUSIK NOOKLEAF
+                nookleafBgMusic.pause();
+                nookleafBgMusic.currentTime = 0;
+                
+                // === URUTAN AUDIO TETO ===
+                // 1. Putar suara Startup Teto
+                tetoStartupVoice.volume = 1.0;
+                tetoStartupVoice.play().catch(err => console.log(err));
+                
+                // 2. Beri jeda 2 detik (2000ms), lalu putar Musik BG Teto
+                setTimeout(() => {
+                    tetoBgMusic.volume = 0.4; // Volume BG sedikit lebih pelan
+                    tetoBgMusic.play().catch(e => console.log(e));
+                }, 2000); // JEDA AGAR TIDAK TABRAKAN
             }
             
+            // Update status Navbar
             const links = document.querySelectorAll('.navbar-nav .nav-link');
             links.forEach(l => l.classList.remove('active'));
             if(viewName === 'home') links[0].classList.add('active');
             
+            // Scroll ke atas otomatis
             window.scrollTo(0, 0);
         }
 
@@ -796,8 +843,8 @@
                 if (progress >= 100) {
                     progress = 100; clearInterval(loadingInterval);
                     statusText.innerHTML = "System Ready [100%]"; statusText.style.color = "#34d399";
-                    var bootAudio = document.getElementById('startup-audio'); bootAudio.volume = 1.0; bootAudio.play().catch(err => console.log(err));
-                    setTimeout(() => { var bgMusic = document.getElementById('bg-music'); bgMusic.volume = 0.3; bgMusic.play().catch(e => console.log(e)); }, 2000); 
+                    startupAudio.volume = 1.0; startupAudio.play().catch(err => console.log(err));
+                    setTimeout(() => { nookleafBgMusic.volume = 0.3; nookleafBgMusic.play().catch(e => console.log(e)); }, 2000); 
                     setTimeout(() => { var oobeScreen = document.getElementById('oobe-screen'); oobeScreen.style.opacity = '0'; setTimeout(function() { oobeScreen.style.visibility = 'hidden'; document.body.style.overflowY = 'auto'; }, 1500); }, 500);
                 } else { statusText.innerHTML = `Loading Kernel Modules [${progress}%]`; }
                 progressFill.style.width = progress + '%';
@@ -807,10 +854,13 @@
         document.body.addEventListener('keydown', startBootSequence, { once: true });
 
         // === OOBE SHUTDOWN REUSABLE FUNCTION ===
-        const shutdownScreen = document.getElementById('shutdown-screen'), shutdownAudio = document.getElementById('shutdown-audio'), bgMusic = document.getElementById('bg-music');
+        const shutdownScreen = document.getElementById('shutdown-screen');
         
         function triggerOobeShutdown(targetUrl, isNewTab) {
-            bgMusic.pause(); 
+            // STOP SEMUA MUSIK SEBELUM SHUTDOWN
+            nookleafBgMusic.pause();
+            tetoBgMusic.pause();
+            
             shutdownAudio.play().catch(err => console.log(err)); 
             document.body.style.overflowY = 'hidden'; 
             shutdownScreen.style.visibility = 'visible'; 
@@ -820,13 +870,23 @@
                 if (isNewTab) { 
                     window.open(targetUrl, '_blank'); 
                     shutdownScreen.style.opacity = '0'; 
-                    setTimeout(() => { shutdownScreen.style.visibility = 'hidden'; document.body.style.overflowY = 'auto'; bgMusic.play(); }, 1000); 
+                    setTimeout(() => { 
+                        shutdownScreen.style.visibility = 'hidden'; 
+                        document.body.style.overflowY = 'auto'; 
+                        // RESUME MUSIK SESUAI TEMA
+                        if(document.body.classList.contains('teto-theme')){
+                            tetoBgMusic.play();
+                        } else {
+                            nookleafBgMusic.play();
+                        }
+                    }, 1000); 
                 } else { 
                     window.location.href = targetUrl; 
                 } 
             }, 3500);
         }
 
+        // Terapkan logat shutdown ke semua link oobe-link
         document.querySelectorAll('.oobe-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 if(this.getAttribute('href') && this.getAttribute('href') !== '#') {
@@ -837,9 +897,6 @@
         });
 
         // === RICKROLL TROLL SYSTEM ===
-        const rickrollContainer = document.getElementById('rickroll-container');
-        const rickrollVideo = document.getElementById('rickroll-video');
-
         function enterFullscreenAndPlay() {
             if (rickrollContainer.requestFullscreen) {
                 rickrollContainer.requestFullscreen();
@@ -851,25 +908,39 @@
             rickrollVideo.play().catch(err => console.log("Gagal nge-troll:", err));
         }
 
+        // Triggers untuk Rickroll Biasa
         document.querySelectorAll('.rickroll-trigger').forEach(trigger => {
             trigger.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                bgMusic.pause();
-                rickrollVideo.src = "https://files.catbox.moe/ww2p45.mp4"; 
+                // Stop musik tema apapun yang jalan
+                nookleafBgMusic.pause();
+                tetoBgMusic.pause();
+
+                rickrollVideo.src = "https://files.catbox.moe/ww2p45.mp4"; // Rickroll Biasa
                 rickrollContainer.style.display = 'block';
                 enterFullscreenAndPlay();
             });
         });
 
+        // Triggers untuk Rickroll Teto (Dipakai juga di Jebakan CBT)
+        function triggerTetoRickroll() {
+            // Stop musik tema apapun yang jalan
+            nookleafBgMusic.pause();
+            tetoBgMusic.pause();
+
+            rickrollVideo.src = "https://files.catbox.moe/ul5orj.mp4"; // Rickroll Teto
+            rickrollContainer.style.display = 'block';
+            enterFullscreenAndPlay();
+        }
+
+        // Hubungkan tombol trigger teto11-trigger ke fungsi baru
         document.querySelectorAll('.rickroll-teto11-trigger').forEach(trigger => {
             trigger.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                bgMusic.pause();
-                rickrollVideo.src = "https://files.catbox.moe/ul5orj.mp4"; 
-                rickrollContainer.style.display = 'block';
-                enterFullscreenAndPlay();
+                triggerTetoRickroll();
             });
         });
+
 
         // === LOGIKA LOGIN CODE CBT ===
         document.getElementById('btnVerifyCbt').addEventListener('click', function() {
@@ -877,32 +948,34 @@
             const correctCbtCode = "RotiTetoEnak9280"; 
 
             if (enteredCode === correctCbtCode) {
+                // JIKA KODE BENAR
                 document.getElementById('cbtInputGroup').style.display = 'none';
                 document.getElementById('cbtInstructions').style.display = 'none';
                 document.getElementById('cbtModalFooter').style.display = 'none';
                 document.getElementById('cbtSuccessZone').style.display = 'block';
                 
+                // Logika Shutdown Khusus untuk Tombol Unduh CBT
                 document.getElementById('cbtDirectLink').addEventListener('click', function(e) {
                     e.preventDefault();
                     const directUrl = this.href;
                     const cbtModalEl = document.getElementById('cbtModal');
                     const modalInst = bootstrap.Modal.getInstance(cbtModalEl);
                     if (modalInst) modalInst.hide();
-                    triggerOobeShutdown(directUrl, true);
+                    triggerOobeShutdown(directUrl, true); // Shutdown OOBE sebelum buka tab baru
                 });
+
             } else {
+                // JIKA KODE SALAH -> JEBAKAN RICKROLL TETO
                 const cbtModalEl = document.getElementById('cbtModal');
                 const modalInst = bootstrap.Modal.getInstance(cbtModalEl);
-                if (modalInst) modalInst.hide();
-                document.getElementById('cbtCodeInput').value = ""; 
-
-                bgMusic.pause();
-                rickrollVideo.src = "https://files.catbox.moe/ul5orj.mp4"; 
-                rickrollContainer.style.display = 'block';
-                enterFullscreenAndPlay();
+                if (modalInst) modalInst.hide(); // Tutup Modal dulu
+                
+                document.getElementById('cbtCodeInput').value = ""; // Reset Input
+                triggerTetoRickroll(); // JALANKAN JEBAKAN TETO
             }
         });
 
+        // Reset Modal saat ditutup
         document.getElementById('cbtModal').addEventListener('hidden.bs.modal', function () {
             document.getElementById('cbtCodeInput').value = "";
             document.getElementById('cbtSuccessZone').style.display = 'none';
