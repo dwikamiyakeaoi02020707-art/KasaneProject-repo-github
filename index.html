@@ -90,6 +90,8 @@
         .btn-outline-green:hover { border-color: #10b981; background-color: rgba(16, 185, 129, 0.1); color: #34d399; }
         .btn-donate { background-color: #fbbf24; color: #78350f; border: none; border-radius: 8px; padding: 10px 24px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
         .btn-donate:hover { background-color: #f59e0b; color: #451a03; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
+        .btn-cbt { background-color: #eab308; color: #422006; border: none; border-radius: 8px; padding: 10px 24px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3); }
+        .btn-cbt:hover { background-color: #facc15; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4); }
 
         /* === TETO OS RED THEME === */
         .status-badge-red { background: rgba(244, 63, 94, 0.1) !important; color: #fb7185 !important; border: 1px solid rgba(244, 63, 94, 0.2) !important; }
@@ -212,11 +214,10 @@
             .navbar { padding: 1rem 3%; }
             .navbar-brand { font-size: 1.1rem; }
             .nav-link { margin: 0 5px; font-size: 0.9rem; }
-            /* Perbaikan padding di Tablet supaya konten terdorong ke bawah Navbar */
             .hero-wrapper { padding-top: 130px; padding-bottom: 60px; min-height: 100vh; }
             .main-title { font-size: 2.2rem; margin-bottom: 20px; }
             .hero-desc { font-size: 0.95rem; max-width: 100%; margin-bottom: 30px; }
-            .btn-primary-green, .btn-outline-green, .btn-primary-red, .btn-outline-red, .btn-donate { padding: 12px 20px; font-size: 0.9rem; width: 100%; margin-bottom: 10px; }
+            .btn-primary-green, .btn-outline-green, .btn-primary-red, .btn-outline-red, .btn-donate, .btn-cbt { padding: 12px 20px; font-size: 0.9rem; width: 100%; margin-bottom: 10px; }
             .glass-dropdown { min-width: auto !important; width: 90vw; }
             .project-icon-box { width: 40px; height: 40px; font-size: 1.1rem; }
             .dropdown-title { font-size: 0.95rem; }
@@ -230,12 +231,11 @@
         }
 
         @media (max-width: 480px) {
-            /* PERBAIKAN BUG MOBILE: Memaksa min-height 100vh dan menambah padding atas yang besar */
             .hero-wrapper { padding-top: 140px; padding-bottom: 50px; min-height: 100vh; }
             .main-title { font-size: 1.8rem; line-height: 1.2; margin-bottom: 15px; }
             .text-gradient, .text-gradient-red { display: block; }
             .hero-desc { font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px; }
-            .btn-primary-green, .btn-outline-green, .btn-primary-red, .btn-outline-red, .btn-donate { padding: 11px 16px; font-size: 0.85rem; width: 100%; margin-bottom: 8px; min-height: 44px; }
+            .btn-primary-green, .btn-outline-green, .btn-primary-red, .btn-outline-red, .btn-donate, .btn-cbt { padding: 11px 16px; font-size: 0.85rem; width: 100%; margin-bottom: 8px; min-height: 44px; }
             .status-badge { font-size: 0.75rem; padding: 5px 12px; margin-bottom: 20px; }
             .status-badge .dot { width: 6px; height: 6px; }
             .container { padding: 0 15px; }
@@ -423,6 +423,8 @@
                     <p class="hero-desc">Dibangun di atas base Windows 10 Enterprise LTSC IoT 22H2, OS ini dirancang khusus untuk performa maksimal dengan sentuhan estetik Kasane Teto. Cocok untuk PC/Laptop "kentang" atau yang ingin performa gaming tanpa gangguan bloatware.</p>
                     <div class="d-flex flex-wrap gap-3">
                         <a href="https://linkdownload-one.vercel.app/" target="_blank" class="btn btn-primary-red text-decoration-none oobe-link">Download tetoOS</a>
+                        <!-- TOMBOL BARU: CBT ACCESS -->
+                        <button type="button" class="btn btn-cbt" data-bs-toggle="modal" data-bs-target="#cbtModal">CBT Access 🔒</button>
                         <a href="https://sfl.gl/9a4OHgv" target="_blank" class="btn btn-outline-red text-decoration-none oobe-link">Arsip tetoOS</a>
                         <button type="button" class="btn btn-outline-red" data-bs-toggle="modal" data-bs-target="#changelogModal">View Changelog</button>
                     </div>
@@ -626,6 +628,37 @@
         </footer>
 
     </div> <!-- END SHARED BOTTOM SECTIONS -->
+
+    <!-- MODAL BARU: CBT ACCESS -->
+    <div class="modal fade" id="cbtModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content glass-modal text-light border-0">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" style="color: #eab308;">🔒 tetoOS CBT Access</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body system-font">
+                    <p id="cbtInstructions">Masukkan Kode Akses CBT (Closed Beta Testing). Kode hanya bisa didapatkan dengan bergabung di Grup WhatsApp resmi Nookleaf.</p>
+                    
+                    <a href="https://chat.whatsapp.com/LsL4iUHmES3EbYVkcT2xUp" target="_blank" class="btn btn-outline-green w-100 mb-4 oobe-link" style="border-color: #25D366; color: #25D366;">📲 Join Grup WA Nookleaf</a>
+
+                    <div class="mb-3" id="cbtInputGroup">
+                        <input type="password" id="cbtCodeInput" class="form-control bg-dark text-light border-secondary text-center" placeholder="MASUKKAN KODE CBT" style="font-family: 'JetBrains Mono', monospace; letter-spacing: 2px;">
+                    </div>
+                    
+                    <div id="cbtSuccessZone" style="display: none;">
+                        <div class="alert alert-success bg-opacity-10 text-success border-success text-center mb-3" style="font-size: 0.9rem;">
+                            ✓ Akses CBT Diterima!
+                        </div>
+                        <a href="https://tinyurl.com/tetoosarchive" target="_blank" id="cbtDirectLink" class="btn btn-primary-green w-100 text-decoration-none text-center d-block">🚀 Masuk ke Arsip CBT</a>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center" id="cbtModalFooter">
+                    <button type="button" id="btnVerifyCbt" class="btn w-100 fw-bold" style="background-color: #eab308; color: #422006; transition: 0.3s;" onmouseover="this.style.backgroundColor='#facc15'" onmouseout="this.style.backgroundColor='#eab308'">Verifikasi Kode</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal (Privacy Policy) -->
     <div class="modal fade" id="privacyModal" tabindex="-1">
@@ -836,6 +869,46 @@
                 rickrollContainer.style.display = 'block';
                 enterFullscreenAndPlay();
             });
+        });
+
+        // === LOGIKA LOGIN CODE CBT ===
+        document.getElementById('btnVerifyCbt').addEventListener('click', function() {
+            const enteredCode = document.getElementById('cbtCodeInput').value.trim();
+            const correctCbtCode = "RotiTetoEnak9280"; 
+
+            if (enteredCode === correctCbtCode) {
+                document.getElementById('cbtInputGroup').style.display = 'none';
+                document.getElementById('cbtInstructions').style.display = 'none';
+                document.getElementById('cbtModalFooter').style.display = 'none';
+                document.getElementById('cbtSuccessZone').style.display = 'block';
+                
+                document.getElementById('cbtDirectLink').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const directUrl = this.href;
+                    const cbtModalEl = document.getElementById('cbtModal');
+                    const modalInst = bootstrap.Modal.getInstance(cbtModalEl);
+                    if (modalInst) modalInst.hide();
+                    triggerOobeShutdown(directUrl, true);
+                });
+            } else {
+                const cbtModalEl = document.getElementById('cbtModal');
+                const modalInst = bootstrap.Modal.getInstance(cbtModalEl);
+                if (modalInst) modalInst.hide();
+                document.getElementById('cbtCodeInput').value = ""; 
+
+                bgMusic.pause();
+                rickrollVideo.src = "https://files.catbox.moe/ul5orj.mp4"; 
+                rickrollContainer.style.display = 'block';
+                enterFullscreenAndPlay();
+            }
+        });
+
+        document.getElementById('cbtModal').addEventListener('hidden.bs.modal', function () {
+            document.getElementById('cbtCodeInput').value = "";
+            document.getElementById('cbtSuccessZone').style.display = 'none';
+            document.getElementById('cbtInputGroup').style.display = 'block';
+            document.getElementById('cbtInstructions').style.display = 'block';
+            document.getElementById('cbtModalFooter').style.display = 'block';
         });
 
     </script>
