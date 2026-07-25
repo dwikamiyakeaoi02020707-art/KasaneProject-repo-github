@@ -299,9 +299,9 @@
     <audio id="shutdown-audio" src="https://files.catbox.moe/xr0v4f.mp3" preload="auto"></audio>
     <audio id="nookleaf-bg-music" src="https://files.catbox.moe/ck141f.mp3" preload="auto" loop></audio>
     
-    <!-- AUDIO BARU KHUSUS TETO -->
-    <audio id="teto-startup-voice" src="https://files.catbox.moe/zm3wud.mp3" preload="auto"></audio>
-    <audio id="teto-bg-music" src="https://files.catbox.moe/t82l3n.mp3" preload="auto" loop></audio>
+    <!-- AUDIO BARU KHUSUS TETO (HANYA STARTUP SAJA) -->
+    <!-- DENGAN LINK MP3 YANG BARU -->
+    <audio id="teto-startup-voice" src="https://files.catbox.moe/t82l3n.mp3" preload="auto"></audio>
 
     <!-- OOBE BOOT SCREEN -->
     <div id="oobe-screen">
@@ -484,11 +484,15 @@
                         <p style="color: #10b981; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Lead Modder</p>
                         <p>Specialist in OS optimization and performance tuning for maximum system efficiency.</p>
                     </div>
+                    
+                    <!-- PERBAIKAN BUG PENUTUP DIV DI CARD HIROLIZIA -->
                     <div class="dev-card">
                         <img src="https://files.catbox.moe/yrvhcc.jpg" alt="Hirolizia" style="border-color: rgba(56, 189, 248, 0.3);">
                         <h4><a href="https://hirumihiro.blogspot.com/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#38bdf8'" onmouseout="this.style.color='inherit'">Hirolizia</a></h4>
                         <p style="color: #38bdf8; font-weight: 600; font-size: 0.95rem; margin-bottom: 12px;">Designer & Modder</p>
-                        <p>Creative mind behind UI/UX design and aesthetic implementation across projects.</    div>
+                        <p>Creative mind behind UI/UX design and aesthetic implementation across projects.</p>
+                    </div>
+                    
                     <div class="dev-card">
                         <img src="https://files.catbox.moe/chedlr.jpg" alt="Holymagi" style="border-color: rgba(244, 63, 94, 0.3);">
                         <h4><a href="https://ymgitech.vercel.app/" target="_blank" style="color: #fff; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#f43f5e'" onmouseout="this.style.color='inherit'">Holymagi</a></h4>
@@ -635,37 +639,6 @@
 
     </div> <!-- END SHARED BOTTOM SECTIONS -->
 
-    <!-- MODAL BARU: CBT ACCESS -->
-    <div class="modal fade" id="cbtModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content glass-modal text-light border-0">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" style="color: #eab308;">🔒 tetoOS CBT Access</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body system-font">
-                    <p id="cbtInstructions">Masukkan Kode Akses CBT (Closed Beta Testing). Kode hanya bisa didapatkan dengan bergabung di Grup WhatsApp resmi Nookleaf.</p>
-                    
-                    <a href="https://chat.whatsapp.com/LsL4iUHmES3EbYVkcT2xUp" target="_blank" class="btn btn-outline-green w-100 mb-4 oobe-link" style="border-color: #25D366; color: #25D366;">📲 Join Grup WA Nookleaf</a>
-
-                    <div class="mb-3" id="cbtInputGroup">
-                        <input type="password" id="cbtCodeInput" class="form-control bg-dark text-light border-secondary text-center" placeholder="MASUKKAN KODE CBT" style="font-family: 'JetBrains Mono', monospace; letter-spacing: 2px;">
-                    </div>
-                    
-                    <div id="cbtSuccessZone" style="display: none;">
-                        <div class="alert alert-success bg-opacity-10 text-success border-success text-center mb-3" style="font-size: 0.9rem;">
-                            ✓ Akses CBT Diterima!
-                        </div>
-                        <a href="https://tinyurl.com/tetoosarchive" target="_blank" id="cbtDirectLink" class="btn btn-primary-green w-100 text-decoration-none text-center d-block">🚀 Masuk ke Arsip CBT</a>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center" id="cbtModalFooter">
-                    <button type="button" id="btnVerifyCbt" class="btn w-100 fw-bold" style="background-color: #eab308; color: #422006; transition: 0.3s;" onmouseover="this.style.backgroundColor='#facc15'" onmouseout="this.style.backgroundColor='#eab308'">Verifikasi Kode</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal (Privacy Policy) -->
     <div class="modal fade" id="privacyModal" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -761,9 +734,9 @@
         const rickrollVideo = document.getElementById('rickroll-video');
         const rickrollContainer = document.getElementById('rickroll-container');
 
-        // ELEMEN AUDIO BARU TETO
+        // ELEMEN AUDIO BARU TETO (Hanya ada startup)
+        // DENGAN LINK MP3 YANG BARU
         const tetoStartupVoice = document.getElementById('teto-startup-voice');
-        const tetoBgMusic = document.getElementById('teto-bg-music');
 
         // === LOGIKA TEMA (DARK/LIGHT MODE) ===
         function toggleTheme() {
@@ -778,7 +751,7 @@
             }
         }
 
-        // === LOGIKA TOGGLE VIEW BERANDA (DENGAN TRANSISI AUDIO) ===
+        // === LOGIKA TOGGLE VIEW BERANDA ===
         function toggleView(viewName) {
             const body = document.body;
             
@@ -788,11 +761,9 @@
                 document.getElementById('teto-view').style.display = 'none';
                 body.classList.remove('teto-theme');
                 
-                // STOP SEMUA AUDIO TETO
+                // STOP AUDIO TETO STARTUP (jika masih jalan)
                 tetoStartupVoice.pause();
                 tetoStartupVoice.currentTime = 0;
-                tetoBgMusic.pause();
-                tetoBgMusic.currentTime = 0;
                 
                 // RESUME MUSIK NOOKLEAF
                 nookleafBgMusic.volume = 0.3;
@@ -804,20 +775,16 @@
                 document.getElementById('teto-view').style.display = 'block';
                 body.classList.add('teto-theme');
                 
-                // STOP TOTAL MUSIK NOOKLEAF
+                // MATIKAN MUSIK NOOKLEAF KETIKA MASUK TETO OS
                 nookleafBgMusic.pause();
                 nookleafBgMusic.currentTime = 0;
                 
-                // === URUTAN AUDIO TETO ===
-                // 1. Putar suara Startup Teto
+                // Putar suara Startup Teto (hanya dimainkan sekali sebagai efek masuk)
                 tetoStartupVoice.volume = 1.0;
+                tetoStartupVoice.currentTime = 0;
                 tetoStartupVoice.play().catch(err => console.log(err));
                 
-                // 2. Beri jeda 2 detik (2000ms), lalu putar Musik BG Teto
-                setTimeout(() => {
-                    tetoBgMusic.volume = 0.4; // Volume BG sedikit lebih pelan
-                    tetoBgMusic.play().catch(e => console.log(e));
-                }, 2000); // JEDA AGAR TIDAK TABRAKAN
+                // TIDAK ADA MUSIK BACKGROUND YANG DILANJUTKAN.
             }
             
             // Update status Navbar
@@ -859,7 +826,7 @@
         function triggerOobeShutdown(targetUrl, isNewTab) {
             // STOP SEMUA MUSIK SEBELUM SHUTDOWN
             nookleafBgMusic.pause();
-            tetoBgMusic.pause();
+            tetoStartupVoice.pause();
             
             shutdownAudio.play().catch(err => console.log(err)); 
             document.body.style.overflowY = 'hidden'; 
@@ -873,10 +840,8 @@
                     setTimeout(() => { 
                         shutdownScreen.style.visibility = 'hidden'; 
                         document.body.style.overflowY = 'auto'; 
-                        // RESUME MUSIK SESUAI TEMA
-                        if(document.body.classList.contains('teto-theme')){
-                            tetoBgMusic.play();
-                        } else {
+                        // RESUME MUSIK HANYA JIKA DI HOME THEME
+                        if(!document.body.classList.contains('teto-theme')){
                             nookleafBgMusic.play();
                         }
                     }, 1000); 
@@ -914,7 +879,7 @@
                 e.preventDefault(); 
                 // Stop musik tema apapun yang jalan
                 nookleafBgMusic.pause();
-                tetoBgMusic.pause();
+                tetoStartupVoice.pause();
 
                 rickrollVideo.src = "https://files.catbox.moe/ww2p45.mp4"; // Rickroll Biasa
                 rickrollContainer.style.display = 'block';
@@ -926,7 +891,7 @@
         function triggerTetoRickroll() {
             // Stop musik tema apapun yang jalan
             nookleafBgMusic.pause();
-            tetoBgMusic.pause();
+            tetoStartupVoice.pause();
 
             rickrollVideo.src = "https://files.catbox.moe/ul5orj.mp4"; // Rickroll Teto
             rickrollContainer.style.display = 'block';
